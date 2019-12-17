@@ -1,0 +1,159 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.progettos3"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="15"
+8-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="28" />
+9-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml
+10
+11    <uses-feature
+11-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:5:5-7:36
+12        android:name="android.hardware.camera"
+12-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:6:9-47
+13        android:required="false" />
+13-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:7:9-33
+14
+15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+15-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:9:5-81
+15-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:9:22-78
+16    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+16-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:10:5-80
+16-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:10:22-77
+17
+18    <application
+18-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:12:5-72:19
+19        android:allowBackup="true"
+19-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:13:9-35
+20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+20-->[androidx.core:core:1.0.1] C:\Users\Giancarlo\.gradle\caches\transforms-2\files-2.1\827728f31326dff8cb2dddfafea3bd51\core-1.0.1\AndroidManifest.xml:22:18-86
+21        android:debuggable="true"
+22        android:icon="@drawable/logo"
+22-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:14:9-38
+23        android:label="@string/app_name"
+23-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:15:9-41
+24        android:roundIcon="@mipmap/ic_launcher_round"
+24-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:16:9-54
+25        android:supportsRtl="true"
+25-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:17:9-35
+26        android:testOnly="true" >
+27        <activity
+27-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:18:9-21:20
+28            android:name="com.example.progettos3.RegistrazioneUtenteActivity"
+28-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:18:19-62
+29            android:theme="@style/AppTheme2" >
+29-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:19:13-45
+30        </activity>
+31        <activity
+31-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:22:9-24:68
+32            android:name="com.example.progettos3.ImageViewActivity"
+32-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:23:13-46
+33            android:theme="@style/AppTheme.NoActionBar" />
+33-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:24:13-56
+34        <activity
+34-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:25:9-28:59
+35            android:name="com.example.progettos3.GiancarloActivity"
+35-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:26:13-46
+36            android:label="@string/title_activity_giancarlo"
+36-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:27:13-61
+37            android:theme="@style/AppTheme.NoActionBar" />
+37-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:28:13-56
+38        <activity android:name="com.example.progettos3.ListFileActivity" />
+38-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:29:9-54
+38-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:29:19-51
+39
+40        <provider
+40-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:31:9-39:20
+41            android:name="androidx.core.content.FileProvider"
+41-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:32:13-62
+42            android:authorities="com.example.progettos3.fileprovider"
+42-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:33:13-70
+43            android:exported="false"
+43-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:34:13-37
+44            android:grantUriPermissions="true" >
+44-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:35:13-47
+45            <meta-data
+45-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:36:13-38:54
+46                android:name="android.support.FILE_PROVIDER_PATHS"
+46-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:37:17-67
+47                android:resource="@xml/file_paths" />
+47-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:38:17-51
+48        </provider>
+49
+50        <activity
+50-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:41:9-45:57
+51            android:name="com.example.progettos3.InserimentoEsercizioActivity"
+51-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:42:13-57
+52            android:label="Inserimento esercizio"
+52-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:43:13-50
+53            android:screenOrientation="portrait"
+53-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:44:13-49
+54            android:theme="@style/AppTheme2" />
+54-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:45:13-45
+55        <activity
+55-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:46:9-50:48
+56            android:name="com.example.progettos3.CronometroEsercizioActivity"
+56-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:47:13-56
+57            android:label="Cronometro esercizio"
+57-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:48:13-49
+58            android:screenOrientation="portrait"
+58-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:49:13-49
+59            android:theme="@style/AppTheme2" />
+59-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:50:13-45
+60        <activity
+60-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:51:9-56:15
+61            android:name="com.example.progettos3.RicercaEsercizi"
+61-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:52:13-44
+62            android:label="Ricerca esercizi"
+62-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:53:13-45
+63            android:screenOrientation="portrait"
+63-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:54:13-49
+64            android:theme="@style/AppTheme2" />
+64-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:55:13-45
+65        <activity
+65-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:57:9-60:59
+66            android:name="com.example.progettos3.HomeActivity"
+66-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:58:13-41
+67            android:label="@string/title_activity_home"
+67-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:59:13-56
+68            android:theme="@style/AppTheme.NoActionBar" />
+68-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:60:13-56
+69        <activity
+69-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:61:9-70:20
+70            android:name="com.example.progettos3.ui.login.LoginActivity"
+70-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:62:13-51
+71            android:label="@string/title_activity_login"
+71-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:63:13-57
+72            android:theme="@style/AppTheme2" >
+72-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:64:13-45
+73            <intent-filter>
+73-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:65:13-69:29
+74                <action android:name="android.intent.action.MAIN" />
+74-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:66:17-69
+74-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:66:25-66
+75
+76                <category android:name="android.intent.category.LAUNCHER" />
+76-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:68:17-77
+76-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:68:27-74
+77            </intent-filter>
+78        </activity>
+79        <activity android:name="com.example.progettos3.MainActivity" />
+79-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:71:9-50
+79-->D:\Dati Giancarlo\GoogleDriveUNIFG\Progetti\workspace\ProgettoS3\ProgettoS3\app\src\main\AndroidManifest.xml:71:19-47
+80
+81        <provider
+81-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Giancarlo\.gradle\caches\transforms-2\files-2.1\bf2e5fe7f42dea16d067de6d0e6cb09e\lifecycle-process-2.0.0\AndroidManifest.xml:23:9-27:43
+82            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+82-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Giancarlo\.gradle\caches\transforms-2\files-2.1\bf2e5fe7f42dea16d067de6d0e6cb09e\lifecycle-process-2.0.0\AndroidManifest.xml:24:13-79
+83            android:authorities="com.example.progettos3.lifecycle-process"
+83-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Giancarlo\.gradle\caches\transforms-2\files-2.1\bf2e5fe7f42dea16d067de6d0e6cb09e\lifecycle-process-2.0.0\AndroidManifest.xml:25:13-69
+84            android:exported="false"
+84-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Giancarlo\.gradle\caches\transforms-2\files-2.1\bf2e5fe7f42dea16d067de6d0e6cb09e\lifecycle-process-2.0.0\AndroidManifest.xml:26:13-37
+85            android:multiprocess="true" />
+85-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Giancarlo\.gradle\caches\transforms-2\files-2.1\bf2e5fe7f42dea16d067de6d0e6cb09e\lifecycle-process-2.0.0\AndroidManifest.xml:27:13-40
+86    </application>
+87
+88</manifest>

@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Listview - jQuery Mobile Demos</title>
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+		<!--<link rel="stylesheet" href="../_assets/css/jqm-demos.css">-->
+		<script src="js/jquery.js"></script>
+		<!--<script src="../_assets/js/index.js"></script>-->
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		<style id="custom-icon">
+			.ui-icon-custom:after {
+				background-image: url("../_assets/img/glyphish-icons/21-skull.png");
+				background-position: 3px 3px;
+				background-size: 70%;
+			}
+		</style>
+		<script>
+			function LeggiDati() {
+				var DdatiMaschera = new Object();
+				DdatiMaschera.thebox = document.getElementById("thebox").value;
+				DdatiMaschera.thebox2  = document.getElementById("thebox2").value;
+				var x = JSON.stringify(DdatiMaschera);
+	   			return x;
+ 			}
+		</script>
+	</head>
+	<body>
+	<input id="thebox" type="text" name="value" value=""><br />
+	<input id="thebox2" type="text" name="value" value=""><br />
+    <button type="button" onclick="ok.performClick(LeggiDati());">OK</button>
+	</body>
+</html>
