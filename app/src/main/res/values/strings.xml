@@ -25,4 +25,21 @@
     <string name="strSubject">Materia</string>
     <string name="strCategory">Categoria</string>
     <string name="strSearch">Cerca</string>
+
+    <!-- Stringhe del cronometro -->
+    <string name="avvia">Avvia</string>
+    <string name="ferma">Ferma</string>
+    <string name="txtCentesimi">:00</string>
+    <string name="timer">Timer</string>
+    <string name="azzera">Azzera</string>
+    <string name="prosegui">Prosegui</string>
+    <string name="btnMeno">-</string>
+    <string name="btnPiu">+</string>
+
+    <!--Stringhe dell'inserimento-->
+    <string name="codice_esercizio">Codice esercizio</string>
+    <string name="categoria">Categoria</string>
+    <string name="libro">Libro</string>
+    <string name="title_activity_giancarlo">GiancarloActivity</string>
+
 </resources>
