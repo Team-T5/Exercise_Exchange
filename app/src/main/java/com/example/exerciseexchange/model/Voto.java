@@ -6,7 +6,7 @@ import io.realm.annotations.PrimaryKey;
 public class Voto extends RealmObject {
 
     @PrimaryKey
-    String Unique_String; //Concatenazione di Username @ Esercizio
+    String Unique_String; //Concatenation of Username @ Esercizio
 
     String Username, Esercizio;
     int Valutazione;

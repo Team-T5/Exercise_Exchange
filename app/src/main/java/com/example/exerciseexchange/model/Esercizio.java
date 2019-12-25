@@ -1,7 +1,5 @@
 package com.example.exerciseexchange.model;
 
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.List;
 
 import io.realm.RealmList;
@@ -11,19 +9,19 @@ import io.realm.annotations.PrimaryKey;
 public class Esercizio extends RealmObject {
 
     @PrimaryKey
-    private Timestamp timestamp;
+    private String timestamp;
 
     private String codiceIdentificativo, Capitolo;
     private int numTentativi;
-    private Time tempoSvolgimento;
+    private String tempoSvolgimento;
     private RealmList<Voto> Voti;
-    private List<String> Fotografie;
+    private RealmList<String> Fotografie;
 
     //Costruttore
     public void Esercizio(){}
 
     //Getters
-    public Timestamp getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
@@ -39,7 +37,7 @@ public class Esercizio extends RealmObject {
         return numTentativi;
     }
 
-    public Time getTempoSvolgimento() {
+    public String getTempoSvolgimento() {
         return tempoSvolgimento;
     }
 

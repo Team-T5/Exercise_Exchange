@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
 
     <CheckBox
-        android:id="@+id/checkRicordami"
+        android:id="@+id/checkRememberMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -108,14 +108,14 @@
         app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
     <Button
-        android:id="@+id/btnAccedi"
+        android:id="@+id/btnLogin"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="@string/strLoginButton"
-        app:layout_constraintBaseline_toBaselineOf="@+id/checkRicordami"
+        app:layout_constraintBaseline_toBaselineOf="@+id/checkRememberMe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toEndOf="@+id/checkRicordami" />
+        app:layout_constraintStart_toEndOf="@+id/checkRememberMe" />
 
     <TextView
         android:id="@+id/txtRegister"
@@ -124,14 +124,14 @@
         android:layout_marginTop="50dp"
         android:text="@string/strRegister"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/checkRicordami" />
+        app:layout_constraintTop_toBottomOf="@+id/checkRememberMe" />
 
     <Button
-        android:id="@+id/btnRegistrati"
+        android:id="@+id/btnRegister"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="@string/strRegisterButton"
         app:layout_constraintBaseline_toBaselineOf="@+id/txtRegister"
-        app:layout_constraintStart_toStartOf="@+id/btnAccedi" />
+        app:layout_constraintStart_toStartOf="@+id/btnLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

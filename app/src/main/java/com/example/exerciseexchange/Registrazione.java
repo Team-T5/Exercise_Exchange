@@ -22,7 +22,7 @@ public class Registrazione extends AppCompatActivity {
         editUsername = findViewById(R.id.editUsername);
         editPassword = findViewById(R.id.editPassword);
         editConfermaPassword = findViewById(R.id.editConfermaPassword);
-        btnRegistrati = findViewById(R.id.btnRegistrati);
+        btnRegistrati = findViewById(R.id.btnRegister);
 
         btnRegistrati.setOnClickListener(new View.OnClickListener() {
             @Override
