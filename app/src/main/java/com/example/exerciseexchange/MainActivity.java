@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoRegistrati();
+                gotoSignUp();
             }
         });
 
@@ -205,9 +205,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void gotoRegistrati(){
+    private void gotoSignUp(){
         //Funzione per andare alla finestra di registrazione
-        Intent intent = new Intent(this, Registrazione.class);
+        Intent intent = new Intent(this, SignUp.class);
         startActivity(intent);
     }
 
