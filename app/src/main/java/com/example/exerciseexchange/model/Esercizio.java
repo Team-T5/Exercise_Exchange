@@ -4,6 +4,8 @@ import java.util.List;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.RealmResults;
+import io.realm.annotations.LinkingObjects;
 import io.realm.annotations.PrimaryKey;
 
 public class Esercizio extends RealmObject {
@@ -17,8 +19,18 @@ public class Esercizio extends RealmObject {
     private RealmList<Voto> Voti;
     private RealmList<String> Fotografie;
 
+    //Campo che contiene lo username dell'utente che ha caricato l'esercizio
+    private String caricatoDa;
+
+    //Link alla categoria
+    @LinkingObjects("Esercizi")
+    private final RealmResults<Categoria> categoriaEsercizio;
+
     //Costruttore
-    public void Esercizio(){}
+    public Esercizio() {
+        categoriaEsercizio = null;
+    }
+
 
     //Getters
     public String getTimestamp() {

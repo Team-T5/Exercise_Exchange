@@ -12,6 +12,10 @@
         <activity android:name=".Statistiche_Esercizi"></activity>
         <activity android:name=".SignUp" />
         <activity android:name=".Homepage" />
+        <activity android:name=".CronometroEsercizioActivity"/>
+        <activity android:name=".ImageViewActivity"/>
+        <activity android:name=".InserimentoEsercizioActivity"/>
+        <activity android:name=".ListFileActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

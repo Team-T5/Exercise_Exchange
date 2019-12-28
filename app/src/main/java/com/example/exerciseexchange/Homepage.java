@@ -92,15 +92,13 @@ public class Homepage extends AppCompatActivity {
     }
 
     private void gotoInserimentoEsercizi(){
-        /*
-        Inserire qui l'intent
-         */
+        Intent intent = new Intent(this, CronometroEsercizioActivity.class);
+        startActivity(intent);
     }
 
     private void gotoStatisticheEsercizi(){
-        /*
-        Inserire qui l'intent
-         */
+        Intent intent = new Intent(this, Statistiche_Esercizi.class);
+        startActivity(intent);
     }
 
     private void Logout(){
