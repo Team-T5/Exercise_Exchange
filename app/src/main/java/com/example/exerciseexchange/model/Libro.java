@@ -48,4 +48,9 @@ public class Libro extends RealmObject {
     public void setVersione(String versione) {
         Versione = versione;
     }
+
+    //Aggiunta alla lista
+    public void addEsercizio(Esercizio esercizio){
+        Esercizi.add(esercizio);
+    }
 }

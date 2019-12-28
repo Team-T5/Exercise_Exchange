@@ -4,8 +4,6 @@ import java.util.List;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
-import io.realm.RealmResults;
-import io.realm.annotations.LinkingObjects;
 import io.realm.annotations.PrimaryKey;
 
 public class Esercizio extends RealmObject {
@@ -22,13 +20,10 @@ public class Esercizio extends RealmObject {
     //Campo che contiene lo username dell'utente che ha caricato l'esercizio
     private String caricatoDa;
 
-    //Link alla categoria
-    @LinkingObjects("Esercizi")
-    private final RealmResults<Categoria> categoriaEsercizio;
+
 
     //Costruttore
     public Esercizio() {
-        categoriaEsercizio = null;
     }
 
 
@@ -61,6 +56,11 @@ public class Esercizio extends RealmObject {
         return Fotografie;
     }
 
+    public String getCaricatoDa() {
+        return caricatoDa;
+    }
+
+
     //Setters
     public void setCodiceIdentificativo(String codiceIdentificativo) {
         this.codiceIdentificativo = codiceIdentificativo;
@@ -68,5 +68,29 @@ public class Esercizio extends RealmObject {
 
     public void setCapitolo(String capitolo) {
         Capitolo = capitolo;
+    }
+
+    public void setCaricatoDa(String caricatoDa) {
+        this.caricatoDa = caricatoDa;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setNumTentativi(int numTentativi) {
+        this.numTentativi = numTentativi;
+    }
+
+    public void setTempoSvolgimento(String tempoSvolgimento) {
+        this.tempoSvolgimento = tempoSvolgimento;
+    }
+
+    public void addVoto(Voto voto){
+        Voti.add(voto);
+    }
+
+    public void addFotografia(String url){
+        Fotografie.add(url);
     }
 }

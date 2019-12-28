@@ -12,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.exerciseexchange.model.Esercizio;
+
 import java.util.Map;
 
 import io.realm.ObjectServerError;
@@ -216,6 +218,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Homepage.class);
         startActivity(intent);
     }
-
-
 }

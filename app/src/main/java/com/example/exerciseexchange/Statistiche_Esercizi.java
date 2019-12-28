@@ -2,6 +2,7 @@ package com.example.exerciseexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,14 +36,12 @@ public class Statistiche_Esercizi extends AppCompatActivity {
     }
 
     private void gotoSingolaCategoria(){
-        /*
-        Inserire l'intent
-         */
+        Intent intent = new Intent(this, singolaCategoria.class);
+        startActivity(intent);
     }
 
     private void gotoStrutturaEsame(){
-        /*
-        Inserire l'intent
-         */
+        Intent intent = new Intent(this, strutturaEsame.class);
+        startActivity(intent);
     }
 }

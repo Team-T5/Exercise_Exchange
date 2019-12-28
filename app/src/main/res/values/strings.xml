@@ -43,4 +43,10 @@
     <string name="title_activity_giancarlo">GiancarloActivity</string>
 
     <string name="atFound">I campi non possono contenere la chiocciola</string>
+
+    <!--Activity singola categoria -->
+    <string name="strEnter">Invia</string>
+    <string name="subjectNotFound">Materia non trovata</string>
+    <string name="categoryNotFound">Categoria non trovata per questa materia</string>
+    <string name="eserciziEmptyList">Non sono presenti esercizi per questa materia e questa categoria</string>
 </resources>

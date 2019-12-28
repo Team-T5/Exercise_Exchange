@@ -11,6 +11,7 @@ public class Categoria extends RealmObject {
 
     private RealmList<Esercizio> Esercizi;
 
+
     //Costruttore
     public void Categoria(){}
 
@@ -21,5 +22,13 @@ public class Categoria extends RealmObject {
 
     public RealmList<Esercizio> getEsercizi() {
         return Esercizi;
+    }
+
+
+    //Setters
+
+    //Aggiunta alla lista
+    public void addEsercizio(Esercizio esercizio) {
+        Esercizi.add(esercizio);
     }
 }

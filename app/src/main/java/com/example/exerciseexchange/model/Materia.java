@@ -31,4 +31,14 @@ public class Materia extends RealmObject {
     }
 
 
+    //Aggiungere alle liste
+    public void addLibro(Libro libro){
+        Libri.add(libro);
+    }
+
+    public void addCategoria(Categoria categoria){
+        Categorie.add(categoria);
+    }
+
+
 }

@@ -9,13 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Statistiche_Esercizi"></activity>
+        <activity android:name=".singolaCategoria"></activity>
+        <activity android:name=".strutturaEsame" />
+        <activity android:name=".Statistiche_Esercizi" />
         <activity android:name=".SignUp" />
         <activity android:name=".Homepage" />
-        <activity android:name=".CronometroEsercizioActivity"/>
-        <activity android:name=".ImageViewActivity"/>
-        <activity android:name=".InserimentoEsercizioActivity"/>
-        <activity android:name=".ListFileActivity"/>
+        <activity android:name=".CronometroEsercizioActivity" />
+        <activity android:name=".ImageViewActivity" />
+        <activity android:name=".InserimentoEsercizioActivity" />
+        <activity android:name=".ListFileActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
