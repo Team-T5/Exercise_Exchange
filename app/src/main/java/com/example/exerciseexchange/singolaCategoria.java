@@ -29,8 +29,6 @@ public class singolaCategoria extends AppCompatActivity {
     private Realm realm;
     private RealmList<Esercizio> esercizi;
     private Esercizio[] arrayEsercizi;
-    //private Materia objMateria;
-    //private Categoria objCategoria;
     private List<String> listNomiCategorie, listTimestamp, listTempi;
     private List<Integer> listNumeroTentativi;
 
@@ -57,7 +55,7 @@ public class singolaCategoria extends AppCompatActivity {
                 categoria = editCategoria.getText().toString().trim();
 
                 //Eseguo la query per prelevare gli esercizi
-                if(runQuery()){
+                if(runQuery(materia, categoria)){
                     //A scopo di test stampo un toast contenente la lista degli esercizi prelevati
                     Toast.makeText(getApplicationContext(),esercizi.toString(), Toast.LENGTH_LONG).show();
 
@@ -107,21 +105,21 @@ public class singolaCategoria extends AppCompatActivity {
         });
     }
 
-    private boolean runQuery(){
-        Materia objMateria = realm.where(Materia.class).equalTo("Nome", materia).findFirst();
+    private boolean runQuery(String mat, String cat){
+        Materia objMateria = realm.where(Materia.class).equalTo("Nome", mat).findFirst();
         if(objMateria == null ){
             Toast.makeText(getApplicationContext(),getString(R.string.subjectNotFound) , Toast.LENGTH_LONG).show();
             return false;
         } else{
             //Verifico che la categoria inserita sia presente tra quelle correlate alla materia
-            Categoria objCategoria = realm.where(Categoria.class).equalTo("Nome", categoria).findFirst();
+            Categoria objCategoria = realm.where(Categoria.class).equalTo("Nome", cat).findFirst();
             if(!objMateria.getCategorie().contains(objCategoria)){
                 Toast.makeText(getApplicationContext(),getString(R.string.categoryNotFound) , Toast.LENGTH_LONG).show();
                 return false;
             } else{
                 /*
                 La categoria inserita è contenuta nella lista delle categorie della materia.
-                Verifico che a questa categoria siano correlati degli esercizi
+                Verifico che a questa categoria siano correlati degli esercizi.
                  */
                 esercizi = objCategoria.getEsercizi();
                 if(esercizi == null || esercizi.size() == 0){

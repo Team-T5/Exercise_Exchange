@@ -4,4 +4,11 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name = "colorPrimary2">#FE5F55</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!-- Colori definiti da noi -->
+    <color name="erroreRosso">#920000</color>
+    <color name="pessimoRosso">#FF0303</color>
+    <color name="discretoGiallo">#F7FF00</color>
+    <color name="buonoVerde">#06FF48</color>
+    <color name="ottimoVerde">#0D9B33</color>
 </resources>

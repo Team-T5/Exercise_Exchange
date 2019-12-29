@@ -35,14 +35,13 @@ public class Homepage extends AppCompatActivity {
         btnLogout = findViewById(R.id.btnLogout);
         txtUsername = findViewById(R.id.txtUsername);
 
-        //I get the fileHandler started
         context = getApplicationContext();
         fh = new fileHandler(context);
 
         /*
-        I put the username into the text field in the top left corner.
-        Since the Credentials.txt file may contain only the username or both username and password
-        I have to distinguish these cases by checking the presence of the @
+        Metto lo username nella casella di testo in alto a sinistra.
+        Dato che il file Credentials.txt può contenere o solo lo username oppure username e password
+        devo distinguere i due casi verificando la presenza della @.
          */
         credentials = fh.read(credentialsFile);
         atPosition = credentials.indexOf('@');
@@ -103,7 +102,7 @@ public class Homepage extends AppCompatActivity {
 
     private void Logout(){
         /*
-        I first log out, then I empty the credentials file and then I go back to the login activity
+        Prima effettuo il logout e poi svuoto il file delle credenziali
          */
         SyncUser.current().logOut();
         fh.emptyFile(credentialsFile);

@@ -6,7 +6,7 @@ import io.realm.annotations.PrimaryKey;
 public class Voto extends RealmObject {
 
     @PrimaryKey
-    private String Timestamp; //Concatenation of Username @ Esercizio
+    private int ID;
 
     private String Username;
     private int Valutazione;
@@ -17,8 +17,8 @@ public class Voto extends RealmObject {
     }
 
     //Getters
-    public String getTimestamp() {
-        return Timestamp;
+    public int getID() {
+        return ID;
     }
 
     public String getUsername() {
@@ -32,10 +32,6 @@ public class Voto extends RealmObject {
     //Setter della valutazione
     public void setValutazione(int valutazione) {
         Valutazione = valutazione;
-    }
-
-    public void setTimestamp(String timestamp) {
-        Timestamp = timestamp;
     }
 
     public void setUsername(String username) {

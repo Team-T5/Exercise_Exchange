@@ -49,4 +49,21 @@
     <string name="subjectNotFound">Materia non trovata</string>
     <string name="categoryNotFound">Categoria non trovata per questa materia</string>
     <string name="eserciziEmptyList">Non sono presenti esercizi per questa materia e questa categoria</string>
+
+    <!-- Activity valutazione -->
+    <string name="examDuration">Durata esame: </string>
+    <string name="estimatedCompletionTime">Tempo di svolgimento stimato: </string>
+    <string name="empty">Vuoto</string>
+
+    <string name="strVerdettoPessimo">Pessimo</string>
+    <string name="strVerdettoDiscreto">Discreto</string>
+    <string name="strVerdettoBuono">Buono</string>
+    <string name="strVerdettoOttimo">Ottimo</string>
+    <string name="strVerdettoErrore">!Errore!</string>
+
+    <string name="strDidascaliaPessimo">Hai scarse possibilità di superare l\'esame</string>
+    <string name="strDidascaliaDiscreto">Hai discrete possibilità di superare l\'esame</string>
+    <string name="strDidascaliaBuono">Hai buone possibilità di superare l\'esame</string>
+    <string name="strDidascaliaOttimo">Hai ottime possibilità di superare l\'esame</string>
+    <string name="strDidascaliaErrore">Si è verificato un problema nel prelievo dei dati</string>
 </resources>

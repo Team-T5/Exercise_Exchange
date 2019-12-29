@@ -12,7 +12,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.exerciseexchange.model.Esercizio;
 
 import java.util.Map;
 
@@ -28,20 +27,20 @@ import static com.example.exerciseexchange.MyApplication.credentialsFile;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Realm elements
+    //Elementi di realm
     Realm realm;
     RealmConfiguration config;
 
-    //Layout elements
+    //Elementi dell'interfaccia
     EditText editUsername, editPassword;
     CheckBox checkRememberMe;
     Button btnLogin, btnRegister;
 
-    //Variables
+    //Varaibili
     String username, password, credentials;
     int atPosition;
 
-    //Context
+    //Contesto
     Context context = null;
 
     //File handler
@@ -57,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
         realm.init(this);
 
-        //I instantiate the elements references
         editUsername = findViewById(R.id.editUsername);
         editPassword = findViewById(R.id.editPassword);
         checkRememberMe = findViewById(R.id.checkRememberMe);
@@ -66,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         /*
-        If there are still users in the session realm may throw exceptions so I make sure I delete
-        the users in the session when I start the app
+        Se ci sono ancora degli utenti nella sessione realm può dare problemi, quindi mi assicuro
+        di eliminare tutti gli utenti nella sessione all'avvio dell'app.
          */
         try {
             for (Map.Entry<String, SyncUser> user : SyncUser.all().entrySet()) {
@@ -92,19 +90,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /*
-        If the user has decided to store the credentials the app should automatically log in.
-        If the login in the onCreate method fails the user will see the login screen.
+        Se l'utente ha deciso di memorizzare le credenziali l'app effettua automaticamente il login.
+        Se il login automatico fallisce l'utente vede la schermata di login.
          */
-        //FileInputStream fis = null;
         try{
             credentials = fh.read(credentialsFile);
-
-            //The line is made of username@password then i need to locate the @ and split the string
+            /*
+            Le credenziali sono memorizzate come username@password, quindi devo localizzare la
+            @ e dividere la stringa.
+             */
             atPosition = credentials.indexOf('@');
 
             /*
-            If @ is not in the credentials string then atPosition = -1 and the credentials are
-            not valid and therefore I don't try to login
+            Se la stringa delle credenziali non contiene la @ allora atPosition = -1 e le
+            credenziali non sono valide. Di conseguenza non provo a fare il login.
              */
             if(atPosition != -1){
                 username = credentials.substring(0, atPosition);
@@ -114,17 +113,17 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(SyncUser user) {
 
-                        // Create the configuration
+                        // Creo la configurazione
                         user = SyncUser.current();
                         config = user.createConfiguration(REALM_URL).fullSynchronization().build();
 
-                        // Open the remote Realm
+                        // Ottengo un'istanza
                         realm = Realm.getInstance(config);
 
-                        //I set the default configuration so that i can retrieve it in other classes
+                        //Imposto la configurazione di default per prenderla nelle altre classi
                         Realm.setDefaultConfiguration(config);
 
-                        //This log instruction is useful to debug
+                        //Istruzione utile per il debug
                         Log.i("Login status: ", "Successful");
                         gotoHomepage();
                     }
@@ -132,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onError(ObjectServerError error) {
                         Log.e("Login error - ", error.toString());
-                        //The credentials are not valid
+                        //Le credenziali non sono valide
                         fh.emptyFile(credentialsFile);
                     }
                 });
@@ -143,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }catch(Exception e){
             Log.e("File error: ", e.getMessage());
-            //The error might be caused by invalid credentials so I delete them for safety
+            //L'errore può essere causato da credenziali non valide quindi le cancello per sicurezza
             fh.emptyFile(credentialsFile);
         }
     }
@@ -152,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         username = editUsername.getText().toString().trim();
         password = editPassword.getText().toString().trim();
         try{
-            //I make sure that all the fields aren't empty
+            //Mi assicuro ceh tutti i campi non siano vuoti
             if(username.isEmpty()){
                 String toastMessage = getString(R.string.insertUsername);
                 Toast toast = Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_LONG);
@@ -170,24 +169,24 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(SyncUser user) {
 
-                            // Create the configuration
+                            // Creo la configurazione
                             user = SyncUser.current();
                             config = user.createConfiguration(REALM_URL).fullSynchronization().build();
 
-                            // Open the remote Realm
+                            // Ottengo un'istanza
                             realm = Realm.getInstance(config);
 
-                            //I set the default configuration so that i can retrieve it in other classes
+                            //Imposto la configurazione di default per prenderla nelle altre classi
                             Realm.setDefaultConfiguration(config);
 
-                            //This log instruction is useful to debug
+                            //Istruzione utile per il debug
                             Log.i("Login status: ", "Successful");
 
                             //Se la query ha avuto successo e la checkbox è stata spuntata bisogna inserire i dati in un file
                             if (checkRememberMe.isChecked()) {
                                 fh.write(credentialsFile, editUsername.getText().toString().trim() + "@" + editPassword.getText().toString().trim());
                             } else{
-                                //I need to store at least the username to show it in the homepage
+                                //Devo memorizzare almeno lo username per poterlo mostrare nella homepage
                                 fh.write(credentialsFile, editUsername.getText().toString().trim());
                             }
                             gotoHomepage();

@@ -23,15 +23,15 @@ import static com.example.exerciseexchange.MyApplication.credentialsFile;
 
 public class SignUp extends AppCompatActivity {
 
-    //Realm elements
+    //Elementi di realm
     Realm realm;
     RealmConfiguration config;
 
-    //Interface elements
+    //Elementi dell'interfaccia
     EditText editUsername, editPassword, editConfermaPassword;
     Button btnRegistrati;
 
-    //Variables
+    //Variabili
     String username, password, confirmPassword;
     int atPosition;
 
@@ -46,13 +46,11 @@ public class SignUp extends AppCompatActivity {
 
         realm.init(this);
 
-        //I instantiate the elements references
         editUsername = findViewById(R.id.editUsername);
         editPassword = findViewById(R.id.editPassword);
         editConfermaPassword = findViewById(R.id.editConfermaPassword);
         btnRegistrati = findViewById(R.id.btnRegister);
 
-        //I instantiate the file handler
         context = getApplicationContext();
         fh = new fileHandler(context);
 
@@ -67,12 +65,12 @@ public class SignUp extends AppCompatActivity {
 
     private void Registrati(){
 
-        //I retrieve the interface data
+        //Prelevo i dati dall'interfaccia
         username = editUsername.getText().toString().trim();
         password = editPassword.getText().toString().trim();
         confirmPassword = editConfermaPassword.getText().toString().trim();
 
-        //I make sure that all the fields have been filled
+        //Mi assicuro che tutti i campi siano stati inseriti
         if(username.isEmpty()){
             String toastMessage = getString(R.string.insertUsername);
             Toast toast = Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_LONG);
@@ -90,35 +88,35 @@ public class SignUp extends AppCompatActivity {
                     toast.show();
                 }
                 else{
-                    //All the fields hae been filled, i go on with the algorithm
+                    //Tutti i campi sono stati inseriti, procedo con l'algoritmo
 
-                    //the "password" must be equal to the "confirmPassword"
+                    //I campi "password" e "confirmPassword" devono coincidere
                     if(!password.equals(confirmPassword)){
                         String toastMessage = getString(R.string.differentPasswordInputs);
                         Toast toast = Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_LONG);
                         toast.show();
                     } else{
-                    //The passwords match, now i need to look for the @
+                    //Le password coincidono, ora devo cercare la @
                     if(username.indexOf('@') == -1 && password.indexOf('@')==-1){
                     SyncCredentials credentials = SyncCredentials.usernamePassword(username, password, true);
                     SyncUser.logInAsync(credentials, AUTH_URL, new SyncUser.Callback<SyncUser>() {
                         @Override
                         public void onSuccess(SyncUser user) {
 
-                            // Create the configuration
+                            // Creo la configurazione
                             user = SyncUser.current();
                             config = user.createConfiguration(REALM_URL).fullSynchronization().build();
 
-                            // Open the remote Realm
+                            // Ottengo un'istanza
                             realm = Realm.getInstance(config);
 
-                            //I set the default configuration so that i can retrieve it in other classes
+                            //Imposto la configurazione di default per prenderla nelle altre classi
                             Realm.setDefaultConfiguration(config);
 
-                            //This log instruction is useful to debug
+                            //Istruzione utile per il debug
                             Log.i("Login status: ", "Successful");
 
-                            //I need to store at least the username to show it in the homepage
+                            //Devo memorizzare almeno lo username per mostrarlo nella homepage
                             fh.write(credentialsFile, username);
                             gotoHomepage();
                         }

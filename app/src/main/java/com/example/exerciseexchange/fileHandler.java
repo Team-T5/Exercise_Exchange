@@ -12,14 +12,13 @@ import java.io.InputStreamReader;
 import static android.content.Context.MODE_PRIVATE;
 
 /*
-This class was made to make it easy and quick to handle the files in the rest of the code.
-Whenever files are either red or written the code refers to this class
+Questa classe è stata fatta per rendere facile e veloce la gestione dei file nel resto del codice
  */
 public class fileHandler{
 
     protected Context context = null;
 
-    //Constructor
+    //Costruttore
     public fileHandler(Context context){
         this.context = context.getApplicationContext();
     }
@@ -33,7 +32,7 @@ public class fileHandler{
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
 
-            //The credentials are in the first line of the file
+            //Le credenziali sono nella prima riga del file
             line = br.readLine();
         } catch(Exception e){
             Log.e("File error: ", e.getMessage());
@@ -52,9 +51,9 @@ public class fileHandler{
         try {
             fos = context.openFileOutput(file, MODE_PRIVATE);
             /*
-               Even if the file was already written the content gets deleted if I write into it.
-               I use the @ to separate the username and the password therefore
-               neither the username nor the password can have the @ into them
+               Anche se il file fosse stato già scritto questa funzione ne sovrascrive il contenuto.
+               Utilizzo la @ per separare username e password, quindi entrambi non devono averla
+               al loro interno.
             */
             fos.write(line.getBytes());
         } catch (Exception e) {
@@ -75,7 +74,7 @@ public class fileHandler{
             fos = context.openFileOutput(file, MODE_PRIVATE);
 
             /*
-            I empty the file by writing null into it
+            Svuoto il file scrivendoci null
              */
             fos.write(("").getBytes());
         } catch (Exception e) {

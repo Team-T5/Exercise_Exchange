@@ -1,5 +1,6 @@
 package com.example.exerciseexchange.model;
 
+import java.util.Date;
 import java.util.List;
 
 import io.realm.RealmList;
@@ -9,27 +10,25 @@ import io.realm.annotations.PrimaryKey;
 public class Esercizio extends RealmObject {
 
     @PrimaryKey
-    private String timestamp;
+    private int ID;
 
     private String codiceIdentificativo, Capitolo;
     private int numTentativi;
     private String tempoSvolgimento;
+    private Date dataSvolgimento;
     private RealmList<Voto> Voti;
     private RealmList<String> Fotografie;
 
     //Campo che contiene lo username dell'utente che ha caricato l'esercizio
     private String caricatoDa;
 
-
-
     //Costruttore
     public Esercizio() {
     }
 
-
     //Getters
-    public String getTimestamp() {
-        return timestamp;
+    public int getID(){
+        return ID;
     }
 
     public String getCodiceIdentificativo() {
@@ -60,6 +59,9 @@ public class Esercizio extends RealmObject {
         return caricatoDa;
     }
 
+    public Date getDataSvolgimento() {
+        return dataSvolgimento;
+    }
 
     //Setters
     public void setCodiceIdentificativo(String codiceIdentificativo) {
@@ -74,16 +76,16 @@ public class Esercizio extends RealmObject {
         this.caricatoDa = caricatoDa;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public void setNumTentativi(int numTentativi) {
         this.numTentativi = numTentativi;
     }
 
     public void setTempoSvolgimento(String tempoSvolgimento) {
         this.tempoSvolgimento = tempoSvolgimento;
+    }
+
+    public void setDataSvolgimento(Date dataSvolgimento) {
+        this.dataSvolgimento = dataSvolgimento;
     }
 
     public void addVoto(Voto voto){
