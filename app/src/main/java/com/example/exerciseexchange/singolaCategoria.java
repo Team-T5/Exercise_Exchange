@@ -2,7 +2,6 @@ package com.example.exerciseexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +12,6 @@ import com.example.exerciseexchange.model.Categoria;
 import com.example.exerciseexchange.model.Esercizio;
 import com.example.exerciseexchange.model.Materia;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
@@ -43,7 +41,7 @@ public class singolaCategoria extends AppCompatActivity {
 
         editMateria = findViewById(R.id.editMateria);
         editCategoria = findViewById(R.id.editCategoria);
-        btnInvia = findViewById(R.id.btnInvia);
+        btnInvia = findViewById(R.id.btnRicerca);
 
         Realm.init(this);
         realm = Realm.getDefaultInstance();
@@ -121,7 +119,7 @@ public class singolaCategoria extends AppCompatActivity {
                 La categoria inserita è contenuta nella lista delle categorie della materia.
                 Verifico che a questa categoria siano correlati degli esercizi.
                  */
-                esercizi = objCategoria.getEsercizi();
+                esercizi = objCategoria.getEsercizi(); //Modificare in base a quanto fatto nella classe ricercaEsercizi
                 if(esercizi == null || esercizi.size() == 0){
                     Toast.makeText(getApplicationContext(),getString(R.string.eserciziEmptyList) , Toast.LENGTH_LONG).show();
                     return false;

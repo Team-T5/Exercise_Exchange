@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import io.realm.SyncUser;
 
@@ -15,14 +18,15 @@ import static com.example.exerciseexchange.MyApplication.credentialsFile;
 
 public class Homepage extends AppCompatActivity {
 
-    Button btnRicercaEsercizi, btnInserimentoEsercizi, btnStatisticheEsercizi, btnLogout;
-    TextView txtUsername;
+    private Button btnRicercaEsercizi, btnInserimentoEsercizi, btnStatisticheEsercizi, btnLogout;
+    private TextView txtUsername;
+    private ImageView imgLogo;
 
-    Context context = null;
-    fileHandler fh = null;
+    private Context context = null;
+    private fileHandler fh = null;
 
-    int atPosition;
-    String username, credentials;
+    private int atPosition;
+    private String username, credentials;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +38,13 @@ public class Homepage extends AppCompatActivity {
         btnStatisticheEsercizi = findViewById(R.id.btnStatisticheEsercizi);
         btnLogout = findViewById(R.id.btnLogout);
         txtUsername = findViewById(R.id.txtUsername);
+        imgLogo = findViewById(R.id.imgLogo);
 
         context = getApplicationContext();
         fh = new fileHandler(context);
+
+        //Importo il logo utilizzando Picasso
+        Picasso.get().load(R.drawable.logo).fit().centerInside().into(imgLogo);
 
         /*
         Metto lo username nella casella di testo in alto a sinistra.
@@ -85,9 +93,8 @@ public class Homepage extends AppCompatActivity {
     }
 
     private void gotoRicercaEsercizi(){
-        /*
-        Inserire qui l'intent
-         */
+        Intent intent = new Intent(this, ricercaEsercizi.class);
+        startActivity(intent);
     }
 
     private void gotoInserimentoEsercizi(){

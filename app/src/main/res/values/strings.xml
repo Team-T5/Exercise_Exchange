@@ -48,7 +48,7 @@
     <string name="strEnter">Invia</string>
     <string name="subjectNotFound">Materia non trovata</string>
     <string name="categoryNotFound">Categoria non trovata per questa materia</string>
-    <string name="eserciziEmptyList">Non sono presenti esercizi per questa materia e questa categoria</string>
+    <string name="eserciziEmptyList">La ricerca non ha prodotto risultati</string>
 
     <!-- Activity valutazione -->
     <string name="examDuration">Durata esame: </string>
@@ -66,4 +66,22 @@
     <string name="strDidascaliaBuono">Hai buone possibilità di superare l\'esame</string>
     <string name="strDidascaliaOttimo">Hai ottime possibilità di superare l\'esame</string>
     <string name="strDidascaliaErrore">Si è verificato un problema nel prelievo dei dati</string>
+
+    <!-- Ricerca esercizi -->
+    <string name="ricercaDettagliata">Ricerca dettagliata</string>
+    <string name="ricercaGenerica">Ricerca generica</string>
+
+    <string name="strLibro">Libro</string>
+    <string name="strCapitolo">Capitolo</string>
+    <string name="strNumero">Numero</string>
+    <string name="strRicerca">Ricerca</string>
+    <string name="strCategoria">Categoria</string>
+
+    <string name="bookNotFound">Libro non trovato per questa materia</string>
+
+    <!-- Visualizzazione esercizi -->
+    <string name="strCaricatoDa">Caricato da:</string>
+    <string name="strVotoMedio">Voto medio:</string>
+    <string name="strID">ID:</string>
+
 </resources>

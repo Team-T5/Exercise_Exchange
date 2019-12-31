@@ -10,8 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+
+import com.squareup.picasso.Picasso;
 
 import java.util.Map;
 
@@ -28,23 +31,24 @@ import static com.example.exerciseexchange.MyApplication.credentialsFile;
 public class MainActivity extends AppCompatActivity {
 
     //Elementi di realm
-    Realm realm;
-    RealmConfiguration config;
+    private Realm realm;
+    private RealmConfiguration config;
 
     //Elementi dell'interfaccia
-    EditText editUsername, editPassword;
-    CheckBox checkRememberMe;
-    Button btnLogin, btnRegister;
+    private EditText editUsername, editPassword;
+    private CheckBox checkRememberMe;
+    private Button btnLogin, btnRegister;
+    private ImageView imgLogo;
 
     //Varaibili
-    String username, password, credentials;
-    int atPosition;
+    private String username, password, credentials;
+    private int atPosition;
 
     //Contesto
-    Context context = null;
+    private Context context = null;
 
     //File handler
-    fileHandler fh = null;
+    private fileHandler fh = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +65,10 @@ public class MainActivity extends AppCompatActivity {
         checkRememberMe = findViewById(R.id.checkRememberMe);
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
+        imgLogo = findViewById(R.id.imgLogo);
 
+        //Importo il logo utilizzando Picasso
+        Picasso.get().load(R.drawable.logo).fit().centerInside().into(imgLogo);
 
         /*
         Se ci sono ancora degli utenti nella sessione realm può dare problemi, quindi mi assicuro

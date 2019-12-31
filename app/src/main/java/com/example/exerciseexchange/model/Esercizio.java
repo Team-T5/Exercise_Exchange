@@ -1,5 +1,6 @@
 package com.example.exerciseexchange.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Esercizio extends RealmObject {
+public class Esercizio extends RealmObject implements Serializable {
 
     @PrimaryKey
     private int ID;

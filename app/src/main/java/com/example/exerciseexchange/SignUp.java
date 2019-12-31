@@ -9,7 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import io.realm.ObjectServerError;
 import io.realm.Realm;
@@ -24,20 +27,20 @@ import static com.example.exerciseexchange.MyApplication.credentialsFile;
 public class SignUp extends AppCompatActivity {
 
     //Elementi di realm
-    Realm realm;
-    RealmConfiguration config;
+    private Realm realm;
+    private RealmConfiguration config;
 
     //Elementi dell'interfaccia
-    EditText editUsername, editPassword, editConfermaPassword;
-    Button btnRegistrati;
+    private EditText editUsername, editPassword, editConfermaPassword;
+    private Button btnRegistrati;
+    private ImageView imgLogo;
 
     //Variabili
-    String username, password, confirmPassword;
-    int atPosition;
+    private String username, password, confirmPassword;
 
     //File handler
-    Context context = null;
-    fileHandler fh = null;
+    private Context context = null;
+    private fileHandler fh = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +53,13 @@ public class SignUp extends AppCompatActivity {
         editPassword = findViewById(R.id.editPassword);
         editConfermaPassword = findViewById(R.id.editConfermaPassword);
         btnRegistrati = findViewById(R.id.btnRegister);
+        imgLogo = findViewById(R.id.imgLogo);
 
         context = getApplicationContext();
         fh = new fileHandler(context);
+
+        //Importo il logo utilizzando Picasso
+        Picasso.get().load(R.drawable.logo).fit().centerInside().into(imgLogo);
 
         btnRegistrati.setOnClickListener(new View.OnClickListener() {
             @Override
