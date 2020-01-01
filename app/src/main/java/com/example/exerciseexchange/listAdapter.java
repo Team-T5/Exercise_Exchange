@@ -14,27 +14,40 @@ import com.squareup.picasso.Picasso;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import static com.example.exerciseexchange.MyApplication.noImageURL;
-import static io.realm.internal.SyncObjectServerFacade.getApplicationContext;
-
 public class listAdapter extends RecyclerView.Adapter<listAdapter.listViewHolder> {
     private ArrayList<esercizio_item> esercizio_list;
-//    public ImageView imgEsercizio;
-//    public int IDEsercizio;
-//    public String esercizioCaricatoDa;
-//    public double votoMedioEsercizio;
+    private OnItemClickListener itemListener;
+
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        itemListener = listener;
+    }
 
     public static class listViewHolder extends RecyclerView.ViewHolder{
         public ImageView immagineEsercizio;
         public TextView editableID, editableCaricatoDa, editableVotoMedio;
 
-        public listViewHolder(@NonNull View itemView) {
-
+        public listViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             immagineEsercizio = itemView.findViewById(R.id.immagineEserczio);
             editableID = itemView.findViewById(R.id.editableID);
             editableCaricatoDa = itemView.findViewById(R.id.editableCaricatoDa);
             editableVotoMedio = itemView.findViewById(R.id.editableVotoMedio);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -46,7 +59,7 @@ public class listAdapter extends RecyclerView.Adapter<listAdapter.listViewHolder
     @Override
     public listViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.esercizio_item, parent, false);
-        listViewHolder lvh= new listViewHolder(v);
+        listViewHolder lvh= new listViewHolder(v, itemListener);
         return lvh;
     }
 
@@ -60,7 +73,7 @@ public class listAdapter extends RecyclerView.Adapter<listAdapter.listViewHolder
         //La foto mostrata nella carta è la prima della lista.
         String URL_prima_foto = currentEsercizio.getImgURL();
         //Utilizzo Picasso per impostare l'immagine
-        Picasso.get().load(URL_prima_foto).fit().centerInside().placeholder(R.drawable.no_image_icon).into(holder.immagineEsercizio);
+        Picasso.get().load(URL_prima_foto).fit().centerInside().placeholder(R.drawable.loading).into(holder.immagineEsercizio);
 
         //Imposto i campi di testo
         holder.editableID.setText(Integer.toString(currentEsercizio.getID()));

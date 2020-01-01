@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Adapter;
 
@@ -34,7 +35,7 @@ public class Visualizzazione extends AppCompatActivity {
     private ArrayList<esercizio_item> esercizio_items;
 
     private RecyclerView rw;
-    private RecyclerView.Adapter adapter;
+    private listAdapter adapter;
     private RecyclerView.LayoutManager lm;
 
     private fileHandler fh;
@@ -68,6 +69,15 @@ public class Visualizzazione extends AppCompatActivity {
 
         rw.setLayoutManager(lm);
         rw.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(new listAdapter.OnItemClickListener(){
+            @Override
+            public void onItemClick(int position){
+                Intent intent = new Intent(getApplicationContext(), Slideshow.class);
+                intent.putExtra("ID",Esercizi.get(position).getID());
+                startActivity(intent);
+                }
+        });
     }
 
     private void prelievoEsercizi(){

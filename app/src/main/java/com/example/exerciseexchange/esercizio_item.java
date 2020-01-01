@@ -1,7 +1,5 @@
 package com.example.exerciseexchange;
 
-import java.util.List;
-
 public class esercizio_item {
     private int ID;
     private String imgURL;
