@@ -1,10 +1,12 @@
-package com.example.exerciseexchange;
+package com.example.exerciseexchange.Statistiche_esercizi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+
+import com.example.exerciseexchange.R;
 
 import java.util.StringTokenizer;
 

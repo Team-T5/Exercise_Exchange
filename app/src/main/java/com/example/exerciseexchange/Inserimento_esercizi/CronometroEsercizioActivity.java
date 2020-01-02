@@ -1,4 +1,4 @@
-package com.example.exerciseexchange;
+package com.example.exerciseexchange.Inserimento_esercizi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,32 +12,48 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.w3c.dom.Text;
 
+import com.example.exerciseexchange.R;
+
+import java.text.SimpleDateFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class CronometroEsercizioActivity extends AppCompatActivity {
-    Button start, stop, azzera, piu, meno, prosegui;
-    TextView decimi, txttentativi;
-    Chronometer simpleChronometer;
-    Integer tentativi;
-    TimerTask myTimerTask;
-    Timer timer;
-    final Handler handler = new Handler();
-    Long app1;
-    String mills;
-    String StatoCronometro;
+    private Button start, stop, azzera, piu, meno, prosegui;
+    private TextView decimi, txttentativi;
+    private Chronometer simpleChronometer;
+    private Integer tentativi;
+    private TimerTask myTimerTask;
+    private Timer timer;
+    private final Handler handler = new Handler();
+    private Long app1;
+    private String mills;
+    private String StatoCronometro;
+    private long elapsedMillis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cronometro_esercizio);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setTitle("Home");
+        getSupportActionBar().setSubtitle("Progetto S3");
+
+        txttentativi = findViewById(R.id.txtTentativi);
+        simpleChronometer  = findViewById(R.id.Cronometro); // initiate a chronometer
+        start = findViewById(R.id.btnStart);
+        stop = findViewById(R.id.btnStop);
+        azzera = findViewById(R.id.btnAzzera);
+        piu = findViewById(R.id.btnPiu);
+        meno = findViewById(R.id.btnMeno);
+        prosegui = findViewById(R.id.btnProsegui);
+        simpleChronometer  = findViewById(R.id.Cronometro);
+        decimi = findViewById(R.id.txtCentesimi);
+
         StatoCronometro = "0"; //cronometro fermo
-
-
         myTimerTask = new TimerTask() {
             @Override
             public void run() {
@@ -45,9 +61,8 @@ public class CronometroEsercizioActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        simpleChronometer  = (Chronometer) findViewById(R.id.Cronometro);
                         if (StatoCronometro.equals("1")) {
-                            long elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
+                            elapsedMillis = SystemClock.elapsedRealtime() - simpleChronometer.getBase();
                             app1 = (elapsedMillis / 1000) * 1000;
                             app1 = elapsedMillis - app1;
                             if (Long.toString(app1).length() < 2) {
@@ -56,8 +71,6 @@ public class CronometroEsercizioActivity extends AppCompatActivity {
                             else {
                                 mills = ":"+ Long.toString(app1).substring(0, 2);
                             }
-
-                            decimi = (TextView) findViewById(R.id.txtCentesimi);
                             decimi.setText(mills);
                         }
                     }
@@ -67,29 +80,30 @@ public class CronometroEsercizioActivity extends AppCompatActivity {
         timer = new Timer();
         timer.schedule(myTimerTask, 0,1);
 
-
-        //getSupportActionBar().setTitle("Home");
-        getSupportActionBar().setSubtitle("Progetto S3");
         tentativi = 1;
-        txttentativi = (TextView) findViewById(R.id.txtTentativi);
         txttentativi.setText(Integer.toString(tentativi));
-
-
-        simpleChronometer  = (Chronometer) findViewById(R.id.Cronometro); // initiate a chronometer
-        start = (Button) findViewById(R.id.btnStart);
-        stop = (Button) findViewById(R.id.btnStop);
-        azzera = (Button) findViewById(R.id.btnAzzera);
-        piu = (Button) findViewById(R.id.btnPiu);
-        meno = (Button) findViewById(R.id.btnMeno);
-        prosegui = (Button) findViewById(R.id.btnProsegui);
 
         prosegui.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent intent = new Intent(CronometroEsercizioActivity.this, InserimentoEsercizioActivity.class);
-                startActivity(intent);
+                //Mi assicuro che il timer sia stato attivato
+                if (elapsedMillis != 0) {
+                    Intent intent = new Intent(CronometroEsercizioActivity.this, InserimentoEsercizioActivity.class);
+                /*/
+                Costruisco la stringa del tempo impiegato partendo dai millisecondi misurati dal
+                cronometro.
+                La stringa contenente il tempo impiegato è composta da minuti:secondi:centesimi di secondo
+                */
+                    String tempoImpiegato = new SimpleDateFormat("mm:ss:SS").format(elapsedMillis);
+                    intent.putExtra("tempoImpiegato", tempoImpiegato);
+                    intent.putExtra("numeroTentativi", tentativi);
+                    startActivity(intent);
+                } else{
+                    Toast.makeText(getApplicationContext(), getString(R.string.utilizzareTimer),
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 

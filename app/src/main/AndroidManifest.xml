@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.exerciseexchange">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,19 +15,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Slideshow"></activity>
-        <activity android:name=".Visualizzazione" />
-        <activity android:name=".ricercaEsercizi" />
-        <activity android:name=".Valutazione" />
-        <activity android:name=".singolaCategoria" />
-        <activity android:name=".strutturaEsame" />
-        <activity android:name=".Statistiche_Esercizi" />
+        <activity android:name=".Ricerca_esercizi.Slideshow" />
+        <activity android:name=".Ricerca_esercizi.Visualizzazione" />
+        <activity android:name=".Ricerca_esercizi.ricercaEsercizi" />
+        <activity android:name=".Statistiche_esercizi.Valutazione" />
+        <activity android:name=".Statistiche_esercizi.singolaCategoria" />
+        <activity android:name=".Statistiche_esercizi.StrutturaEsame" />
+        <activity android:name=".Statistiche_esercizi.Statistiche_Esercizi" />
+        <activity android:name=".Statistiche_esercizi.GraphActivity"/>
         <activity android:name=".SignUp" />
         <activity android:name=".Homepage" />
-        <activity android:name=".CronometroEsercizioActivity" />
-        <activity android:name=".ImageViewActivity" />
-        <activity android:name=".InserimentoEsercizioActivity" />
-        <activity android:name=".ListFileActivity" />
+        <activity android:name=".Inserimento_esercizi.CronometroEsercizioActivity" />
+        <activity android:name=".Inserimento_esercizi.ImageViewActivity" />
+        <activity android:name=".Inserimento_esercizi.InserimentoEsercizioActivity" />
+        <activity android:name=".Inserimento_esercizi.ListFileActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +36,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.exerciseexchange.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ricercaEsercizi">
+    tools:context=".Ricerca_esercizi.ricercaEsercizi">
 
     <RadioGroup
         android:id="@+id/radioMenu"
@@ -112,7 +112,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editLibro" />
 
     <EditText
-        android:id="@+id/editCapitolo"
+        android:id="@+id/edit_Capitolo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -133,7 +133,7 @@
         android:textSize="25sp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/guidelineVertical"
-        app:layout_constraintTop_toBottomOf="@+id/editCapitolo" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_Capitolo" />
 
     <EditText
         android:id="@+id/editNumero"
@@ -171,7 +171,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editMateria" />
 
     <EditText
-        android:id="@+id/editCategoria"
+        android:id="@+id/edit_Categoria"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

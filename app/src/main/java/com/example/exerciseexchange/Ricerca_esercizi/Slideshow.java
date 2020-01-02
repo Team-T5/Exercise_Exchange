@@ -1,10 +1,11 @@
-package com.example.exerciseexchange;
+package com.example.exerciseexchange.Ricerca_esercizi;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
+import com.example.exerciseexchange.R;
 import com.example.exerciseexchange.model.Esercizio;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.exerciseexchange;
+package com.example.exerciseexchange.Ricerca_esercizi;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Adapter;
 
+import com.example.exerciseexchange.R;
+import com.example.exerciseexchange.Utilità.fileHandler;
 import com.example.exerciseexchange.model.Categoria;
 import com.example.exerciseexchange.model.Esercizio;
 import com.example.exerciseexchange.model.Libro;
@@ -22,7 +23,7 @@ import java.util.stream.Collectors;
 
 import io.realm.Realm;
 
-import static com.example.exerciseexchange.MyApplication.criteriRicercaFile;
+import static com.example.exerciseexchange.Utilità.MyApplication.criteriRicercaFile;
 
 public class Visualizzazione extends AppCompatActivity {
 

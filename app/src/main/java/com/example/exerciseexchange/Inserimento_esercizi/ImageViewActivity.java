@@ -1,4 +1,4 @@
-package com.example.exerciseexchange;
+package com.example.exerciseexchange.Inserimento_esercizi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+
+import com.example.exerciseexchange.R;
 
 public class ImageViewActivity extends AppCompatActivity {
     public String FileName;

@@ -1,4 +1,4 @@
-package com.example.exerciseexchange;
+package com.example.exerciseexchange.Inserimento_esercizi;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.FileProvider;
+
+import com.example.exerciseexchange.R;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;

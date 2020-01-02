@@ -1,4 +1,4 @@
-package com.example.exerciseexchange;
+package com.example.exerciseexchange.Utilità;
 
 import android.app.Application;
 
@@ -13,4 +13,6 @@ public class MyApplication extends Application {
     //Percorsi dei file
     public static final String credentialsFile = "Credentials.txt";
     public static final String criteriRicercaFile = "criteriRicerca.txt";
+    public static final String hosting = "http://teamt5.altervista.org/Exercise_Exchange/";
+    //Le immagini vanno memorizzate a hosting + timestamp
 }

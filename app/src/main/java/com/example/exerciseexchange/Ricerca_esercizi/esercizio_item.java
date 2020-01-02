@@ -1,4 +1,4 @@
-package com.example.exerciseexchange;
+package com.example.exerciseexchange.Ricerca_esercizi;
 
 public class esercizio_item {
     private int ID;

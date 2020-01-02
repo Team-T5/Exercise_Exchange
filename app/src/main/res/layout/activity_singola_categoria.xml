@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".singolaCategoria">
+    tools:context=".Statistiche_esercizi.singolaCategoria">
 
     <TextView
         android:id="@+id/txtMateria"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editMateria" />
 
     <EditText
-        android:id="@+id/editCategoria"
+        android:id="@+id/edit_Categoria"
         android:layout_width="300sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -63,5 +63,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editCategoria" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_Categoria" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,9 @@
-package com.example.exerciseexchange;
+package com.example.exerciseexchange.Ricerca_esercizi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,26 +12,25 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.exerciseexchange.R;
+import com.example.exerciseexchange.Utilità.fileHandler;
 import com.example.exerciseexchange.model.Categoria;
 import com.example.exerciseexchange.model.Esercizio;
 import com.example.exerciseexchange.model.Libro;
 import com.example.exerciseexchange.model.Materia;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 
-import static com.example.exerciseexchange.MyApplication.criteriRicercaFile;
+import static com.example.exerciseexchange.Utilità.MyApplication.criteriRicercaFile;
 
 public class ricercaEsercizi extends AppCompatActivity {
 
     private RadioGroup radioMenu;
     private RadioButton radioScelta;
     private String radioText;
-    private EditText editMateria, editLibro, editCapitolo, editNumero, editCategoria;
+    private EditText editMateria, editLibro, edit_Capitolo, editNumero, edit_Categoria;
     private TextView txtLibro, txtCapitolo, txtNumero, txtCategoria;
     private Button btnRicerca;
 
@@ -57,9 +55,9 @@ public class ricercaEsercizi extends AppCompatActivity {
 
         editMateria = findViewById(R.id.editMateria);
         editLibro = findViewById(R.id.editLibro);
-        editCapitolo = findViewById(R.id.editCapitolo);
+        edit_Capitolo = findViewById(R.id.edit_Capitolo);
         editNumero = findViewById(R.id.editNumero);
-        editCategoria = findViewById(R.id.editCategoria);
+        edit_Categoria = findViewById(R.id.edit_Categoria);
 
         txtLibro = findViewById(R.id.txtLibro);
         txtCapitolo = findViewById(R.id.txtCapitolo);
@@ -98,9 +96,9 @@ public class ricercaEsercizi extends AppCompatActivity {
             /*
             Devo prima svuotare la categoria e rimuoverla dall'interfaccia per fare spazio.
              */
-            editCategoria.setText("");
+            edit_Categoria.setText("");
             txtCategoria.setVisibility(View.GONE);
-            editCategoria.setVisibility(View.GONE);
+            edit_Categoria.setVisibility(View.GONE);
 
             /*
             Ora rendo visibili gli elementi dell'interfaccia della ricerca dettagliata
@@ -109,7 +107,7 @@ public class ricercaEsercizi extends AppCompatActivity {
             editLibro.setVisibility(View.VISIBLE);
 
             txtCapitolo.setVisibility(View.VISIBLE);
-            editCapitolo.setVisibility(View.VISIBLE);
+            edit_Capitolo.setVisibility(View.VISIBLE);
 
             txtNumero.setVisibility(View.VISIBLE);
             editNumero.setVisibility(View.VISIBLE);
@@ -122,14 +120,14 @@ public class ricercaEsercizi extends AppCompatActivity {
             dall'interfaccia per fare spazio alla categoria.
              */
             editLibro.setText("");
-            editCapitolo.setText("");
+            edit_Capitolo.setText("");
             editNumero.setText("");
 
             txtLibro.setVisibility(View.GONE);
             editLibro.setVisibility(View.GONE);
 
             txtCapitolo.setVisibility(View.GONE);
-            editCapitolo.setVisibility(View.GONE);
+            edit_Capitolo.setVisibility(View.GONE);
 
             txtNumero.setVisibility(View.GONE);
             editNumero.setVisibility(View.GONE);
@@ -138,7 +136,7 @@ public class ricercaEsercizi extends AppCompatActivity {
             Ora devo inserire la categoria
              */
             txtCategoria.setVisibility(View.VISIBLE);
-            editCategoria.setVisibility(View.VISIBLE);
+            edit_Categoria.setVisibility(View.VISIBLE);
 
             //Imposto la modalità
             mode = false;
@@ -146,14 +144,7 @@ public class ricercaEsercizi extends AppCompatActivity {
     }
 
     private void gotoVisualizzazione() {
-//        Bundle b = new Bundle();
-//        b.putSerializable("Esercizi", objEsercizi);
-        /*
-        Verificare che la serializzazione funzioni, e se funziona utilizzarla anche nella classe
-        singolaCategoria
-         */
         Intent intent = new Intent(this, Visualizzazione.class);
-//        intent.putExtras(b);
         startActivity(intent);
     }
 
@@ -169,7 +160,7 @@ public class ricercaEsercizi extends AppCompatActivity {
         if (mode) {
             //Ricerca dettagliata
             libro = editLibro.getText().toString().trim();
-            capitolo = editCapitolo.getText().toString().trim();
+            capitolo = edit_Capitolo.getText().toString().trim();
             numero = editNumero.getText().toString().trim();
 
             if (objMateria == null) {
@@ -186,8 +177,6 @@ public class ricercaEsercizi extends AppCompatActivity {
                 Il libro inserito è contenuto nella lista dei libri della materia.
                 Verifico che a questo libro siano correlati degli esercizi con i criteri cercati.
                  */
-//                    RealmResults<Esercizio> exc = objLibro.getEsercizi().where().equalTo("Capitolo", capitolo).equalTo("codiceIdentificativo", numero).findAll();
-//                    objEsercizi.addAll(exc);
                     objEsercizi = new ArrayList<>(objLibro.getEsercizi().where().equalTo("Capitolo", capitolo).equalTo("codiceIdentificativo", numero).findAll());
                     if (objEsercizi.isEmpty()) {
                         Toast.makeText(getApplicationContext(), getString(R.string.eserciziEmptyList), Toast.LENGTH_LONG).show();
@@ -201,7 +190,7 @@ public class ricercaEsercizi extends AppCompatActivity {
             }
         } else {
             //Ricerca generica
-            categoria = editCategoria.getText().toString().trim();
+            categoria = edit_Categoria.getText().toString().trim();
             if(objMateria == null ){
                 Toast.makeText(getApplicationContext(),getString(R.string.subjectNotFound) , Toast.LENGTH_LONG).show();
                 return false;

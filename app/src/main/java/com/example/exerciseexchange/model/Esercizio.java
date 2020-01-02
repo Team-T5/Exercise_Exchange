@@ -65,6 +65,18 @@ public class Esercizio extends RealmObject implements Serializable {
     }
 
     //Setters
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setVoti(RealmList<Voto> voti) {
+        Voti = voti;
+    }
+
+    public void setFotografie(RealmList<String> fotografie) {
+        Fotografie = fotografie;
+    }
+
     public void setCodiceIdentificativo(String codiceIdentificativo) {
         this.codiceIdentificativo = codiceIdentificativo;
     }

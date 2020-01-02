@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.exerciseexchange.Utilità.fileHandler;
 import com.squareup.picasso.Picasso;
 
 import io.realm.ObjectServerError;
@@ -20,9 +21,9 @@ import io.realm.RealmConfiguration;
 import io.realm.SyncCredentials;
 import io.realm.SyncUser;
 
-import static com.example.exerciseexchange.MyApplication.AUTH_URL;
-import static com.example.exerciseexchange.MyApplication.REALM_URL;
-import static com.example.exerciseexchange.MyApplication.credentialsFile;
+import static com.example.exerciseexchange.Utilità.MyApplication.AUTH_URL;
+import static com.example.exerciseexchange.Utilità.MyApplication.REALM_URL;
+import static com.example.exerciseexchange.Utilità.MyApplication.credentialsFile;
 
 public class SignUp extends AppCompatActivity {
 

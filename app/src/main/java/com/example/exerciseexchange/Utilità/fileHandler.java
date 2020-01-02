@@ -1,4 +1,4 @@
-package com.example.exerciseexchange;
+package com.example.exerciseexchange.Utilità;
 
 import android.content.Context;
 import android.util.Log;

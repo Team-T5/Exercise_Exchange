@@ -35,12 +35,23 @@
     <string name="prosegui">Prosegui</string>
     <string name="btnMeno">-</string>
     <string name="btnPiu">+</string>
+    <string name="utilizzareTimer">Utilizzare il timer</string>
 
     <!--Stringhe dell'inserimento-->
     <string name="codice_esercizio">Codice esercizio</string>
     <string name="categoria">Categoria</string>
+    <string name="capitolo">Capitolo</string>
     <string name="libro">Libro</string>
+    <string name="conferma">Conferma</string>
+    <string name="erroreMateriaVuota">Indicare una materia</string>
+    <string name="erroreCodiceEsercizioVuoto">Indicare un codice esercizio</string>
+    <string name="erroreCapitoloVuoto">Indicare un capitolo</string>
+    <string name="erroreCategoriaVuota">Indicare una categoria</string>
+    <string name="erroreLibroVuoto">Indicare un libro</string>
     <string name="title_activity_giancarlo">GiancarloActivity</string>
+
+    <string name="inserimentoEffettuato">Inserimento effettuato</string>
+    <string name="inserimentoFallito">Errore di inserimento</string>
 
     <string name="atFound">I campi non possono contenere la chiocciola</string>
 
@@ -83,5 +94,10 @@
     <string name="strCaricatoDa">Caricato da:</string>
     <string name="strVotoMedio">Voto medio:</string>
     <string name="strID">ID:</string>
+
+    <!-- Graph activity -->
+    <string name="titoloGraficoTempi">Tempo impiegato (minuti)</string>
+    <string name="titoloGraficotentativi">Tentativi effettuati</string>
+    <string name="sottotitoloGraphActivity">Dati degli ultimi 5 esercizi svolti</string>
 
 </resources>

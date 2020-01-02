@@ -1,4 +1,4 @@
-package com.example.exerciseexchange;
+package com.example.exerciseexchange.Statistiche_esercizi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.exerciseexchange.R;
 
 public class Statistiche_Esercizi extends AppCompatActivity {
 
@@ -41,7 +43,7 @@ public class Statistiche_Esercizi extends AppCompatActivity {
     }
 
     private void gotoStrutturaEsame(){
-        Intent intent = new Intent(this, strutturaEsame.class);
+        Intent intent = new Intent(this, StrutturaEsame.class);
         startActivity(intent);
     }
 }

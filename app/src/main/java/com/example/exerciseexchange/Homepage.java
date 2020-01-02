@@ -10,11 +10,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.exerciseexchange.Inserimento_esercizi.CronometroEsercizioActivity;
+import com.example.exerciseexchange.Ricerca_esercizi.ricercaEsercizi;
+import com.example.exerciseexchange.Statistiche_esercizi.Statistiche_Esercizi;
+import com.example.exerciseexchange.Utilità.fileHandler;
 import com.squareup.picasso.Picasso;
 
 import io.realm.SyncUser;
 
-import static com.example.exerciseexchange.MyApplication.credentialsFile;
+import static com.example.exerciseexchange.Utilità.MyApplication.credentialsFile;
 
 public class Homepage extends AppCompatActivity {
 
