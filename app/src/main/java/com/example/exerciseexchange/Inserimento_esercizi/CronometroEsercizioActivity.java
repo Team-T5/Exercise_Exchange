@@ -38,9 +38,10 @@ public class CronometroEsercizioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cronometro_esercizio);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setTitle("Home");
-        getSupportActionBar().setSubtitle("Progetto S3");
+        getSupportActionBar().setTitle(getString(R.string.titoloInserimento));
+        getSupportActionBar().setSubtitle(getString(R.string.tempiETentativi));
 
         txttentativi = findViewById(R.id.txtTentativi);
         simpleChronometer  = findViewById(R.id.Cronometro); // initiate a chronometer

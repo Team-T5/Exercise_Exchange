@@ -1,13 +1,13 @@
 package com.example.exerciseexchange.Ricerca_esercizi;
 
 public class esercizio_item {
-    private int ID;
+    private long ID;
     private String imgURL;
     private String caricatoDa;
     private double votoMedio;
 
     //Costruttore
-    public esercizio_item(int ID, String imgURL, String caricatoDa, double votoMedio) {
+    public esercizio_item(long ID, String imgURL, String caricatoDa, double votoMedio) {
         this.ID = ID;
         this.imgURL = imgURL;
         this.caricatoDa = caricatoDa;
@@ -15,7 +15,7 @@ public class esercizio_item {
     }
 
     //Getters
-    public int getID() {
+    public long getID() {
         return ID;
     }
 

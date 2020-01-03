@@ -6,15 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".Inserimento_esercizi.InserimentoEsercizioActivity">
 
+    <EditText
+        android:id="@+id/edit_Capitolo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_CodiceEsercizio"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+        app:layout_constraintStart_toEndOf="@+id/edit_CodiceEsercizio" />
+
     <TextView
         android:id="@+id/txtCodiceEsercizio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/codice_esercizio"
-        app:layout_constraintBottom_toTopOf="@+id/edit_CodiceEsercizio"
-        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toTopOf="@+id/guidelineTop"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/edit_CodiceEsercizio"
+        app:layout_constraintTop_toBottomOf="@+id/edit_Categoria" />
+
+    <TextView
+        android:id="@+id/txtCapitolo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/capitolo"
+        app:layout_constraintBottom_toBottomOf="@+id/txtCodiceEsercizio"
+        app:layout_constraintStart_toStartOf="@+id/edit_Capitolo" />
 
     <EditText
         android:id="@+id/edit_CodiceEsercizio"
@@ -24,19 +42,28 @@
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/txtCategoria"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/txtCodiceEsercizio" />
 
     <TextView
-        android:id="@+id/txtCategoria"
+        android:id="@+id/txtLibro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:text="@string/categoria"
-        app:layout_constraintBottom_toTopOf="@+id/edit_Categoria"
+        android:layout_marginTop="20dp"
+        android:text="@string/libro"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/edit_CodiceEsercizio" />
+        app:layout_constraintTop_toBottomOf="@+id/editMateria" />
+
+    <EditText
+        android:id="@+id/edit_Libro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@+id/txtLibro" />
 
     <EditText
         android:id="@+id/edit_Categoria"
@@ -45,56 +72,51 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/txtLibro"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/txtCategoria" />
 
     <TextView
-        android:id="@+id/txtLibro"
+        android:id="@+id/txtCategoria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:text="@string/libro"
-        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/edit_Categoria" />
-
-    <ImageButton
-        android:id="@+id/btnCamera"
-        android:layout_width="392dp"
-        android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:background="@color/colorPrimary"
-        android:contentDescription="Scatta la foto!!"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+        android:text="@string/categoria"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/edit_Libro"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_Libro" />
 
     <ImageButton
         android:id="@+id/btnListaImmagini"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="@color/colorPrimary2"
         android:contentDescription="Visualizza le foto"
-        app:layout_constraintBottom_toTopOf="@+id/btnConferma"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/btnCamera"
         app:srcCompat="@drawable/ic_image_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/btnCamera"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorPrimary"
+        android:contentDescription="Scatta la foto!!"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@+id/edit_CodiceEsercizio"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <Button
         android:id="@+id/btnConferma"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/holo_blue_bright"
         android:text="@string/conferma"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/btnListaImmagini" />
 
@@ -119,27 +141,16 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="10dp" />
 
-    <EditText
-        android:id="@+id/edit_Capitolo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/edit_CodiceEsercizio"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintStart_toEndOf="@+id/edit_CodiceEsercizio" />
-
     <TextView
-        android:id="@+id/txtCapitolo"
+        android:id="@+id/txtMateria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/capitolo"
-        app:layout_constraintStart_toStartOf="@+id/edit_Capitolo"
+        android:text="@string/strSubject"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
 
     <EditText
-        android:id="@+id/edit_Libro"
+        android:id="@+id/editMateria"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -147,6 +158,6 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/txtLibro" />
+        app:layout_constraintTop_toBottomOf="@+id/txtMateria" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

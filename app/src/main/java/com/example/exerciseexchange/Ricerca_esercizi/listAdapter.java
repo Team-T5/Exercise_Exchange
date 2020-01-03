@@ -77,7 +77,7 @@ public class listAdapter extends RecyclerView.Adapter<listAdapter.listViewHolder
         Picasso.get().load(URL_prima_foto).fit().centerInside().placeholder(R.drawable.loading).into(holder.immagineEsercizio);
 
         //Imposto i campi di testo
-        holder.editableID.setText(Integer.toString(currentEsercizio.getID()));
+        holder.editableID.setText(Long.toString(currentEsercizio.getID()));
         holder.editableCaricatoDa.setText(currentEsercizio.getCaricatoDa());
         /*
         Mostro il voto medio con una sola cifra decimale

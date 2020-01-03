@@ -36,8 +36,13 @@
     <string name="btnMeno">-</string>
     <string name="btnPiu">+</string>
     <string name="utilizzareTimer">Utilizzare il timer</string>
+    <string name="numeroTentativi">Numero di tentativi</string>
 
     <!--Stringhe dell'inserimento-->
+    <string name="titoloInserimento">Inserimento esercizi</string>
+    <string name="tempiETentativi">Tempi e tentativi</string>
+    <string name="informazioniEsercizio">Informazioni esercizio</string>
+
     <string name="codice_esercizio">Codice esercizio</string>
     <string name="categoria">Categoria</string>
     <string name="capitolo">Capitolo</string>
@@ -54,6 +59,10 @@
     <string name="inserimentoFallito">Errore di inserimento</string>
 
     <string name="atFound">I campi non possono contenere la chiocciola</string>
+
+    <string name="hostname">ftp.teamt5.altervista.org</string>
+    <string name="usernameFTP">gabriele@teamt5</string>
+    <string name="passwordFTP">password</string>
 
     <!--Activity singola categoria -->
     <string name="strEnter">Invia</string>

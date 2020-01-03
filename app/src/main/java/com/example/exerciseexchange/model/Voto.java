@@ -6,7 +6,7 @@ import io.realm.annotations.PrimaryKey;
 public class Voto extends RealmObject {
 
     @PrimaryKey
-    private int ID;
+    private long ID;
 
     private String Username;
     private int Valutazione;
@@ -17,7 +17,7 @@ public class Voto extends RealmObject {
     }
 
     //Getters
-    public int getID() {
+    public long getID() {
         return ID;
     }
 
@@ -30,6 +30,10 @@ public class Voto extends RealmObject {
     }
 
     //Setter della valutazione
+    public void setID(long ID) {
+        this.ID = ID;
+    }
+
     public void setValutazione(int valutazione) {
         Valutazione = valutazione;
     }

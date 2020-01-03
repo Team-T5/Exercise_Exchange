@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ListView;
 
 
+import com.example.exerciseexchange.BuildConfig;
 import com.example.exerciseexchange.R;
 
 import java.io.File;
@@ -20,15 +21,15 @@ import java.util.List;
 
 public class ListFileActivity extends ListActivity {
     private String path;
-    private String codice_esercizio;
+    private String subDirectory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_file);
         // Use the current directory as title
 
-        this.codice_esercizio = getIntent().getStringExtra("codice_esercizio");
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES + "/" + this.codice_esercizio + "/");
+        this.subDirectory = getIntent().getStringExtra("subDirectory");
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES + "/" + this.subDirectory + "/");
         this.path = storageDir.getPath();
         /*if (getIntent().hasExtra("path")) {
             path = getIntent().getStringExtra("path");
@@ -61,7 +62,7 @@ public class ListFileActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
 
-        File percorsoFile = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES + "/"+ this.codice_esercizio + "/");
+        File percorsoFile = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES + "/"+ this.subDirectory + "/");
         //percorsoFile = this.getExternalFilesDir(this.path);
 
         String Percorso = percorsoFile.getAbsolutePath();
@@ -70,7 +71,7 @@ public class ListFileActivity extends ListActivity {
         String filename = Percorso + "/" + (String) getListAdapter().getItem(position);
         File f = new File(filename);
         //Uri photoUri =  Uri.fromFile(f);
-        Uri photoUri = FileProvider.getUriForFile(this, "com.example.progettos3.fileprovider", f);
+        Uri photoUri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".fileprovider", f);
         /*ShareCompat.IntentBuilder intentBuilder = ShareCompat.IntentBuilder.from(this).addStream(photoUri);
         Intent chooserIntent = intentBuilder.createChooserIntent();
         startActivity(chooserIntent);*/

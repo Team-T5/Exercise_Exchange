@@ -21,6 +21,6 @@
         android:layout_marginLeft="5dip"
         android:layout_toRightOf="@id/imgFoto"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="8sp"></TextView>
 </RelativeLayout>

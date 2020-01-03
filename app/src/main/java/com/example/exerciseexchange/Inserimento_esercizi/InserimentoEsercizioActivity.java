@@ -3,6 +3,8 @@ package com.example.exerciseexchange.Inserimento_esercizi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import org.apache.commons.net.ftp.FTPClient;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,18 +18,21 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-
+import com.example.exerciseexchange.BuildConfig;
 import com.example.exerciseexchange.Homepage;
 import com.example.exerciseexchange.R;
 import com.example.exerciseexchange.Utilità.fileHandler;
+import com.example.exerciseexchange.model.Categoria;
 import com.example.exerciseexchange.model.Esercizio;
+import com.example.exerciseexchange.model.Libro;
+import com.example.exerciseexchange.model.Materia;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -38,16 +43,23 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_TAKE_PHOTO = 1;
     private Uri photoURI;
-    private String currentPhotoPath, CodiceEsercizio, capitolo, PercorsoFoto, categoria, libro;
+    private String currentPhotoPath, CodiceEsercizio, capitolo, PercorsoFoto, categoria, libro, materia;
     private ImageButton btnCamera, btnListaImmagini;
     private Button btnConferma;
-    private EditText edit_CodiceEsercizio, edit_Capitolo, edit_Categoria, edit_Libro;
+    private EditText edit_CodiceEsercizio, edit_Capitolo, edit_Categoria, edit_Libro, editMateria;
 
-    private List<String> Fotografie; //Le stringhe sono gli URL delle foto sul sito
+    private List<String> Fotografie = null; //Le stringhe sono gli URL delle foto sul sito
 
     private Realm realm;
 
     private fileHandler fh;
+
+    private Categoria objCategoria;
+    private Libro objLibro;
+
+    private String subDirectory; //Stringa che conterrà la cartella in cui inserie l'immagine
+
+    private FTPClient client = new FTPClient();//Serve per il caricamento delle immagini su Altervista
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +67,10 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inserimento_esercizio);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setTitle("Home");
-        getSupportActionBar().setSubtitle("Progetto S3");
+        getSupportActionBar().setTitle(getString(R.string.titoloInserimento));
+        getSupportActionBar().setSubtitle(getString(R.string.informazioniEsercizio));
+
+        subDirectory = null;
 
         Realm.init(this);
         realm = Realm.getDefaultInstance();
@@ -70,51 +84,68 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
         edit_Capitolo = findViewById(R.id.edit_Capitolo);
         edit_Categoria =findViewById(R.id.edit_Categoria);
         edit_Libro = findViewById(R.id.edit_Libro);
+        editMateria = findViewById(R.id.editMateria);
 
         btnConferma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(verificaCampiInseriti()){
                 /*
-                Inserire qui l'upload delle immagini su hosting + timestamp.
-
-                Fotografie.add(hosting + timestamp);
-
-                Utilizzare un ciclo ed inserire la generazione del timestamp al suo interno
-                così da avere un timestamp diverso per ogni fotografia
+                Il caricamento delle foto sul server è opzionale, infatti se l'utente non scatta
+                delle fotografie la lista dei file sarà vuota e il metodo caricamentoFTP non verrà
+                chiamato. Il metodo che carica l'oggetto in realm, invece, viene sempre utilizzato.
                  */
-                //String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss-SSSS").format(new Date());
-
+                File folder = new File(subDirectory);
+                String URLimg;
+                File[] listaImmagini =  folder.listFiles();
+                if(listaImmagini != null) {
+                    for (int j = 0; j < listaImmagini.length; j++) {
+                    /*
+                    Il metodo length restituisce 0 sia se il file è vuoto sia se questo non esiste
+                     */
+                        if (listaImmagini[j].length() != 0) {
+                            URLimg = subDirectory + "_" + j;
+                            Fotografie.add(URLimg);
+                            //Caricamento vero e proprio
+                            caricamentoFTP(URLimg);
+                        }
+                    }
+                }
                     caricamentoOggettoRealm();
 
                 }
-//                finish();
             }
         });
 
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                    File photoFile = null;
-                    try {
-                        photoFile = createImageFile(CodiceEsercizio);
-                        //photoFile.delete();
-                    } catch (IOException ex) {
-                        Toast.makeText(InserimentoEsercizioActivity.this, ex.getMessage(),
-                                Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    // Continue only if the File was successfully created
-                    if (photoFile != null) {
-                        photoURI = FileProvider.getUriForFile(v.getContext(),
-                                "com.example.exerciseexchange.fileprovider",
-                                photoFile);
-                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                        //startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                if (verificaCampiInseriti()) {
+                    // TODO Auto-generated method stub
+                    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                        File photoFile = null;
+                        try {
+//                            photoFile = createImageFile(CodiceEsercizio);
+                            photoFile = createImageFile(subDirectory);
+                            //photoFile.delete();
+                        } catch (IOException ex) {
+                            Toast.makeText(InserimentoEsercizioActivity.this, ex.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        // Continue only if the File was successfully created
+                        if (photoFile != null) {
+//                            photoURI = FileProvider.getUriForFile(v.getContext(),
+//                                    "${applicationId}.provider",
+//                                    photoFile);
+                            photoURI = FileProvider.getUriForFile(v.getContext(),
+                                     BuildConfig.APPLICATION_ID + ".fileprovider",
+                                    photoFile);
+                            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                            //startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                        }
                     }
                 }
             }
@@ -123,36 +154,40 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
         btnListaImmagini.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                // Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                // Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
-                //         + "/files/Pictures/");
-                //  File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-                // intent.setDataAndType(Uri.parse("file://" + storageDir.getPath()+"/"), "*/*");
-                // startActivity(Intent.createChooser(intent, "Open folder"));*/
-                File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES + "/" + edit_CodiceEsercizio.getText() + "/");
-                String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss-SSS").format(new Date());
-                String imageFileName = "JPEG_" + timeStamp + "_";
+                if (verificaCampiInseriti()) {
+                    // TODO Auto-generated method stub
 
-                try {
-                    File image = File.createTempFile(
-                            imageFileName,  /* prefix */
-                            ".jpg",         /* suffix */
-                            storageDir      /* directory */
-                    );
+//                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                     Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
+//                             + "/files/Pictures/");
+//                      File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+//                     intent.setDataAndType(Uri.parse("file://" + storageDir.getPath()+"/"), "*/*");
+//                     startActivity(Intent.createChooser(intent, "Open folder"));
 
-                    PercorsoFoto = image.getParent();
-                    image.delete();
-                } catch (IOException ioex) {
-                    PercorsoFoto = PercorsoFoto;
+                    File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES + "/" + subDirectory + "/");
+                    String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
+                    String imageFileName = "JPEG_" + timeStamp + "_";
+
+                    try {
+                        File image = File.createTempFile(
+                                imageFileName,  /* prefix */
+                                ".jpg",         /* suffix */
+                                storageDir      /* subDirectory */
+                        );
+
+                        PercorsoFoto = image.getParent();
+                        image.delete();
+                    } catch (IOException ioex) {
+                        PercorsoFoto = PercorsoFoto;
+                    }
+
+                    // Save a file: path for use with ACTION_VIEW intents
+
+                    Intent iListaFile = new Intent(v.getContext(), ListFileActivity.class);
+                    iListaFile.putExtra("path", PercorsoFoto);
+                    iListaFile.putExtra("subDirectory", subDirectory);
+                    startActivity(iListaFile);
                 }
-
-                // Save a file: path for use with ACTION_VIEW intents
-
-                Intent iListaFile = new Intent(v.getContext(), ListFileActivity.class);
-                iListaFile.putExtra("path", PercorsoFoto);
-                iListaFile.putExtra("codice_esercizio", edit_CodiceEsercizio.getText().toString());
-                startActivity(iListaFile);
             }
         });
     }
@@ -162,30 +197,68 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
         capitolo = edit_Capitolo.getText().toString();
         categoria = edit_Categoria.getText().toString();
         libro = edit_Libro.getText().toString();
+        materia = editMateria.getText().toString().trim();
 
+        if (materia.isEmpty()) {
+            Toast.makeText(InserimentoEsercizioActivity.this, getString(R.string.erroreMateriaVuota),
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (libro.isEmpty()) {
+            Toast.makeText(InserimentoEsercizioActivity.this, getString(R.string.erroreLibroVuoto),
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (categoria.isEmpty()) {
+            Toast.makeText(InserimentoEsercizioActivity.this, getString(R.string.erroreCategoriaVuota),
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
         if (CodiceEsercizio.isEmpty()) {
             Toast.makeText(InserimentoEsercizioActivity.this, getString(R.string.erroreCodiceEsercizioVuoto),
                     Toast.LENGTH_LONG).show();
             return false;
+        }
+        if (capitolo.isEmpty()) {
+            Toast.makeText(InserimentoEsercizioActivity.this, getString(R.string.erroreCapitoloVuoto),
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        /*
+        Tutti i campi sono stati inseriti, quindi posso verificare che l'inserimento sia coerente
+         */
+
+        Materia objMateria = realm.where(Materia.class).equalTo("Nome", materia).findFirst();
+        if (objMateria == null) {
+            Toast.makeText(InserimentoEsercizioActivity.this, getString(R.string.subjectNotFound),
+                    Toast.LENGTH_LONG).show();
+            return false;
         } else {
-            if (capitolo.isEmpty()) {
-                Toast.makeText(InserimentoEsercizioActivity.this, getString(R.string.erroreCapitoloVuoto),
+            objCategoria = realm.where(Categoria.class).equalTo("Nome", categoria).findFirst();
+            if (!objMateria.getCategorie().contains(objCategoria)) {
+                Toast.makeText(InserimentoEsercizioActivity.this, getString(R.string.subjectNotFound),
                         Toast.LENGTH_LONG).show();
                 return false;
             } else {
-                if (categoria.isEmpty()) {
-                    Toast.makeText(InserimentoEsercizioActivity.this, getString(R.string.erroreCategoriaVuota),
+                objLibro = realm.where(Libro.class).equalTo("Nome", libro).findFirst();
+                if (!objMateria.getLibri().contains(objLibro)) {
+                    Toast.makeText(InserimentoEsercizioActivity.this, getString(R.string.bookNotFound),
                             Toast.LENGTH_LONG).show();
                     return false;
                 } else {
-                    if (libro.isEmpty()) {
-                        Toast.makeText(InserimentoEsercizioActivity.this, getString(R.string.erroreLibroVuoto),
-                                Toast.LENGTH_LONG).show();
-                        return false;
-                    } else {
-                        //Tutti i campi sono stati inseriti
-                        return true;
+                    /*
+                    L'inserimento è coerente.
+                    A questo punto imposto la subDirectory di destinazione degli esercizi utilizzando
+                    un timestamp limitato ai secondi. Inoltre dato che questa funzione viene
+                    eseguita ogni volta che si preme un pulsante se non istanziassi la variabile
+                    diractory solo se questa è nulla inserirei le immagini di volta in volta in una
+                    subDirectory diversa.
+                     */
+                    if(subDirectory == null){
+                        subDirectory = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
                     }
+                    return true;
                 }
             }
         }
@@ -203,15 +276,15 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
-    private File createImageFile(String codEsercizio) throws IOException {
+    private File createImageFile(String subdirectory) throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss-SSS").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES + "/" + codEsercizio + "/");
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES + "/" + subdirectory + "/");
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
-                storageDir      /* directory */
+                storageDir      /* subDirectory */
         );
 
         // Save a file: path for use with ACTION_VIEW intents
@@ -224,11 +297,10 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
         Esercizio e = new Esercizio();
 
         //Prelevo lo username dell'utente
-                    /*
-                    Metto lo username nella casella di testo in alto a sinistra.
-                    Dato che il file Credentials.txt può contenere o solo lo username oppure username e password
-                    devo distinguere i due casi verificando la presenza della @.
-                     */
+        /*
+        Dato che il file Credentials.txt può contenere o solo lo username oppure username e password
+        devo distinguere i due casi verificando la presenza della @.
+        */
         String credentials = fh.read(credentialsFile);
         int atPosition = credentials.indexOf('@');
         String username;
@@ -243,16 +315,13 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
         String tempoImpiegato = getIntent().getStringExtra("tempoImpiegato");
         int numeroTentativi = getIntent().getIntExtra("numeroTentativi", 1);
 
-        RealmList<String> immagini = new RealmList<>();
-        immagini.addAll(Fotografie);
-
         //Queste righe di codice lasciale stare per ora, poi le toglierò se necessario
 //                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 //                    sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 //                    String dataSvolgimento = sdf.format(new Date());
 
         //L'ID del nuovo esercizio è dato dal ID massimo nella tabella + 1
-        int ID = (int) realm.where(Esercizio.class).max("ID") + 1;
+        long ID = (long) realm.where(Esercizio.class).max("ID") + 1;
 
         e.setID(ID);
         e.setCodiceIdentificativo(CodiceEsercizio);
@@ -260,7 +329,11 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
         e.setNumTentativi(numeroTentativi);
         e.setTempoSvolgimento(tempoImpiegato);
         e.setDataSvolgimento(new Date());
-        e.setFotografie(immagini);
+        if(Fotografie != null && !Fotografie.isEmpty()) {
+            RealmList<String> immagini = new RealmList<>();
+            immagini.addAll(Fotografie);
+            e.setFotografie(immagini);
+        }
         e.setCaricatoDa(username);
 
 
@@ -284,6 +357,39 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), getString(R.string.inserimentoFallito), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void caricamentoFTP(String URL){
+        /*
+        Le foto vengono memorizzate su una cartella di Altervista a cui accedo utilizzando il
+        protocollo FTP.
+         */
+        FileInputStream fis = null;
+        try {
+            //Mi connetto al server
+            client.connect(getString(R.string.hostname));
+            client.login(getString(R.string.usernameFTP), getString(R.string.passwordFTP));
+
+            // Creo un InputStream del file da caricare
+            fis = new FileInputStream(URL);
+
+            // Memorizzo il file sul server
+            client.storeFile(URL, fis);
+
+            client.logout();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            //E' buona norma chiudere tutte le connessioni alla fine del trasferimento
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+                client.disconnect();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

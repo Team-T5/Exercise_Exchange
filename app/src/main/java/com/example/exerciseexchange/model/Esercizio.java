@@ -11,7 +11,7 @@ import io.realm.annotations.PrimaryKey;
 public class Esercizio extends RealmObject implements Serializable {
 
     @PrimaryKey
-    private int ID;
+    private long ID;
 
     private String codiceIdentificativo, Capitolo;
     private int numTentativi;
@@ -28,7 +28,7 @@ public class Esercizio extends RealmObject implements Serializable {
     }
 
     //Getters
-    public int getID(){
+    public long getID(){
         return ID;
     }
 
@@ -65,7 +65,7 @@ public class Esercizio extends RealmObject implements Serializable {
     }
 
     //Setters
-    public void setID(int ID) {
+    public void setID(long ID) {
         this.ID = ID;
     }
 
