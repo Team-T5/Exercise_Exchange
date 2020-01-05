@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.exerciseexchange">
 
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -20,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Statistiche_esercizi.StrutturaEsame2"></activity>
+        <activity android:name=".Statistiche_esercizi.selezioneMateria" />
+        <activity android:name=".Ricerca_esercizi.votaEsercizio" />
         <activity android:name=".Ricerca_esercizi.Slideshow" />
         <activity android:name=".Ricerca_esercizi.Visualizzazione" />
         <activity android:name=".Ricerca_esercizi.ricercaEsercizi" />
@@ -27,7 +29,8 @@
         <activity android:name=".Statistiche_esercizi.singolaCategoria" />
         <activity android:name=".Statistiche_esercizi.StrutturaEsame" />
         <activity android:name=".Statistiche_esercizi.Statistiche_Esercizi" />
-        <activity android:name=".Statistiche_esercizi.GraphActivity"/>
+        <activity android:name=".Statistiche_esercizi.GraphActivity" />
+        <activity android:name=".Statistiche_esercizi.StrutturaEsameActivity" />
         <activity android:name=".SignUp" />
         <activity android:name=".Homepage" />
         <activity android:name=".Inserimento_esercizi.CronometroEsercizioActivity" />

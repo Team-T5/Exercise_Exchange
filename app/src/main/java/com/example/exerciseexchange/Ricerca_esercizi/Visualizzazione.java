@@ -36,7 +36,7 @@ public class Visualizzazione extends AppCompatActivity {
     private ArrayList<esercizio_item> esercizio_items;
 
     private RecyclerView rw;
-    private listAdapter adapter;
+    public static listAdapter adapterListaEsercizi; //Mi serve che sia pubblico per aggiornare i voti
     private RecyclerView.LayoutManager lm;
 
     private fileHandler fh;
@@ -66,12 +66,12 @@ public class Visualizzazione extends AppCompatActivity {
         rw = findViewById(R.id.listaEsercizi);
         rw.setHasFixedSize(true);
         lm = new LinearLayoutManager(this);
-        adapter = new listAdapter(esercizio_items);
+        adapterListaEsercizi = new listAdapter(esercizio_items);
 
         rw.setLayoutManager(lm);
-        rw.setAdapter(adapter);
+        rw.setAdapter(adapterListaEsercizi);
 
-        adapter.setOnItemClickListener(new listAdapter.OnItemClickListener(){
+        adapterListaEsercizi.setOnItemClickListener(new listAdapter.OnItemClickListener(){
             @Override
             public void onItemClick(int position){
                 Intent intent = new Intent(getApplicationContext(), Slideshow.class);

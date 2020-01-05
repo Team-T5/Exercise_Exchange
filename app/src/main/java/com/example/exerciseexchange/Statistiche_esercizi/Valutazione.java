@@ -14,7 +14,7 @@ public class Valutazione extends AppCompatActivity {
 
     private TextView editableDurataEsame, editableTempoStimato, editableVerdetto, editableDidascalia;
     private double rapportoTempi;
-    private int secondiDurataEsame = 0, secondiTempoStimato = 0;
+    private int secondiDurataEsame = 0, secondiTempoStimato = 0, oreTempoStimato = 0, minutiTempoStimato = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,41 +37,16 @@ public class Valutazione extends AppCompatActivity {
             secondiDurataEsame = b.getInt("secondiDurataEsame");
             secondiTempoStimato = b.getInt("secondiTempoStimato");
 
+            editableDurataEsame.setText(b.getString("stringaDurataEsame"));
 
-//            /*
-//            Trasferire il blocco di istruzioni contenente la conversione dei tempi nella classe
-//            della struttura d'esame
-//            */
-//
-//            /*
-//            I tempi stimati sono nella forma mm:ss:cc quindi devo prma scomporre la stringa in
-//            minuti, secondi e centesimi di secondo, moltiplicarli per appositi coefficienti e sommarli.
-//
-//            I centesimi di secondo vengono arrotondati, quindi diventano o 1 secondo o 0 secondi.
-//             */
-//            StringTokenizer st = new StringTokenizer(strTempoStimato, ":");
-//
-//            //Minuti
-//            secondiTempoStimato = secondiTempoStimato + Integer.parseInt(st.nextToken())*60;
-//
-//            //Secondi
-//            secondiTempoStimato = secondiTempoStimato + Integer.parseInt(st.nextToken());
-//
-//            //Centesimi di secondo
-//            secondiTempoStimato = secondiTempoStimato + Math.round(Integer.parseInt(st.nextToken())/100);
-//
-//            /*
-//            La durata d'esame è nella forma hh:mm
-//             */
-//            st = new StringTokenizer(strDurataEsame, ":");
-//
-//            //Ore
-//            secondiDurataEsame = secondiDurataEsame + Integer.parseInt(st.nextToken())*3600;
-//
-//            //Minuti
-//            secondiDurataEsame = secondiDurataEsame + Integer.parseInt(st.nextToken())*60;
+            oreTempoStimato = secondiTempoStimato/3600;
+            minutiTempoStimato = (secondiTempoStimato - oreTempoStimato*3600)/60;
 
-            rapportoTempi = secondiTempoStimato/secondiDurataEsame;
+            String stringTempoStimato = secondiTempoStimato/3600 + ":" + (secondiTempoStimato - oreTempoStimato*3600)/60;
+            editableTempoStimato.setText(stringTempoStimato);
+
+
+            rapportoTempi = (float) secondiTempoStimato/secondiDurataEsame;
 
             //Classificazione del rapporto dei tempi
             if(rapportoTempi > 1){

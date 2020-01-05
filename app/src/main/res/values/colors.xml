@@ -7,6 +7,11 @@
 
     <!--                         Colori definiti da noi                   -->
 
+    <!-- I tre colori del logo dell'app -->
+    <color name="colore1">#fc8429</color>
+    <color name="colore2">#006ab6</color>
+    <color name="colore3">#fccb29</color>
+
     <!-- Schermata di valutazione -->
     <color name="erroreRosso">#920000</color>
     <color name="pessimoRosso">#FF0303</color>
@@ -16,4 +21,7 @@
 
     <!-- Visualizzazione esercizi -->
     <color name="sfondoLista">#8E8D8D</color>
+
+    <!-- Valutazione -->
+    <color name="nero">#000000</color>
 </resources>

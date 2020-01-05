@@ -43,7 +43,7 @@ public class Statistiche_Esercizi extends AppCompatActivity {
     }
 
     private void gotoStrutturaEsame(){
-        Intent intent = new Intent(this, StrutturaEsame.class);
+        Intent intent = new Intent(this, selezioneMateria.class);
         startActivity(intent);
     }
 }

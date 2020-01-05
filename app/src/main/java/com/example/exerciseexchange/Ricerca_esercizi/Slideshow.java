@@ -3,10 +3,13 @@ package com.example.exerciseexchange.Ricerca_esercizi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.exerciseexchange.R;
 import com.example.exerciseexchange.model.Esercizio;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -18,6 +21,9 @@ public class Slideshow extends AppCompatActivity {
     Realm realm;
 
     ViewPager view_pager;
+    FloatingActionButton fabValutazione;
+
+    long ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +33,28 @@ public class Slideshow extends AppCompatActivity {
         Realm.init(this);
         realm = Realm.getDefaultInstance();
 
+        view_pager = findViewById(R.id.view_pager);
+        fabValutazione = findViewById(R.id.fabValutazione);
         /*
         Prelevo l'ID dell'esercizio tramite l'intent e prelevo le sue foto tramite una query
          */
-        int ID = getIntent().getIntExtra("ID", 0);
+        ID = getIntent().getLongExtra("ID", 0);
         fotoURLs = realm.where(Esercizio.class).equalTo("ID", ID).findFirst().getFotografie();
 
-        view_pager = findViewById(R.id.view_pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(this, fotoURLs);
         view_pager.setAdapter(adapter);
+
+        fabValutazione.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoVotaEsercizio();
+            }
+        });
+    }
+
+    private void gotoVotaEsercizio(){
+        Intent intent = new Intent(this, votaEsercizio.class);
+        intent.putExtra("ID", ID);
+        startActivity(intent);
     }
 }

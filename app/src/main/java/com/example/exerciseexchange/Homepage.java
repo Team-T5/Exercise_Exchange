@@ -64,7 +64,7 @@ public class Homepage extends AppCompatActivity {
             //The file only has the username
             username = credentials;
         }
-        //I write the username in teh text field
+        //I write the username in the text field
         txtUsername.setText(username);
 
         btnRicercaEsercizi.setOnClickListener(new View.OnClickListener() {

@@ -72,7 +72,7 @@
 
     <!-- Activity valutazione -->
     <string name="examDuration">Durata esame: </string>
-    <string name="estimatedCompletionTime">Tempo di svolgimento stimato: </string>
+    <string name="estimatedCompletionTime">Tempo stimato: </string>
     <string name="empty">Vuoto</string>
 
     <string name="strVerdettoPessimo">Pessimo</string>
@@ -108,5 +108,21 @@
     <string name="titoloGraficoTempi">Tempo impiegato (minuti)</string>
     <string name="titoloGraficotentativi">Tentativi effettuati</string>
     <string name="sottotitoloGraphActivity">Dati degli ultimi 5 esercizi svolti</string>
+
+    <!-- Vota esercizio -->
+    <string name="voto">Voto</string>
+    <string name="votoConfermato">Voto inserito correttamente</string>
+    <string name="votoNegato">Errore di inserimento del voto</string>
+
+    <!-- Struttura esame -->
+    <string name="durataEsame">Durata esame</string>
+    <string name="consiglioInserimento">hh:mm</string>
+    <string name="aggiungiSezione">Aggiungi sezione</string>
+    <string name="aggiungiCategoria">Aggiungi categoria</string>
+    <string name="erroreSezioneVuota">Aggiungere una categoria alla sezione</string>
+    <string name="erroreListaSezioniVuota">Aggiungere almeno una sezione</string>
+    <string name="strBaseSezione">Sezione</string>
+    <string name="strCategorie">Categorie:</string>
+    <string name="inserireDurataEsame">Inserire la durata d\'esame</string>
 
 </resources>
