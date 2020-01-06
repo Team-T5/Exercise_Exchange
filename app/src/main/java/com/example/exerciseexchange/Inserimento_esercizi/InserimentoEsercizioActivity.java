@@ -317,7 +317,7 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
         univoco (nome) in realm e devo caricarla su Altervista
          */
         File currentImage;
-        FTPUploader uploader;
+        FTPUploader uploader = null;
         //Connessione FTP
         try {
             uploader = new FTPUploader(getString(R.string.hostname), getString(R.string.usernameFTP), getString(R.string.passwordFTP));
@@ -331,6 +331,14 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
             }
         } catch (Exception error){
             Log.e("Errore di connessione", error.getMessage());
+        } finally{
+            try{
+                if(uploader != null){
+                    uploader.disconnect();
+                }
+            } catch (Exception eccezione){
+                Log.e("Errore di chiusura", eccezione.getMessage());
+            }
         }
         e.setCaricatoDa(username);
 

@@ -11,11 +11,11 @@ import com.example.exerciseexchange.R;
 import com.example.exerciseexchange.Utilità.fileHandler;
 import com.example.exerciseexchange.model.Esercizio;
 import com.example.exerciseexchange.model.Voto;
+import static com.example.exerciseexchange.Ricerca_esercizi.Visualizzazione.adapterListaEsercizi;
 
 import io.realm.Realm;
 
 import static com.example.exerciseexchange.Utilità.MyApplication.credentialsFile;
-import static com.example.exerciseexchange.Ricerca_esercizi.Visualizzazione.adapterListaEsercizi;
 
 public class votaEsercizio extends AppCompatActivity {
 
