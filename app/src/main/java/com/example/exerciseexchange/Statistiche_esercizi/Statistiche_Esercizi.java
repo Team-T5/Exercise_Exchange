@@ -18,6 +18,9 @@ public class Statistiche_Esercizi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistiche__esercizi);
 
+        getSupportActionBar().setTitle(R.string.strExerciseStats);
+        getSupportActionBar().setSubtitle(R.string.selezioneModalità);
+
         btnSingolaCategoria = findViewById(R.id.btnSingolaCategoria);
         btnStrutturaEsame = findViewById(R.id.btnStrutturaEsame);
 

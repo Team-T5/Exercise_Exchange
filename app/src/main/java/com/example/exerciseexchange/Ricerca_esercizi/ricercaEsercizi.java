@@ -51,6 +51,9 @@ public class ricercaEsercizi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ricerca_esercizi);
 
+        getSupportActionBar().setTitle(R.string.strExerciseResearch);
+        getSupportActionBar().setSubtitle(R.string.modalitàRicerca);
+
         radioMenu = findViewById(R.id.radioMenu);
 
         editMateria = findViewById(R.id.editMateria);

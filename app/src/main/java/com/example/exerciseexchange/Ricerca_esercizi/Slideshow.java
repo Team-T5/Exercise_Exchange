@@ -30,6 +30,9 @@ public class Slideshow extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slideshow);
 
+        getSupportActionBar().setTitle(R.string.strExerciseResearch);
+        getSupportActionBar().setSubtitle(R.string.slideshow);
+
         Realm.init(this);
         realm = Realm.getDefaultInstance();
 

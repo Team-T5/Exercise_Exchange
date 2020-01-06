@@ -48,6 +48,8 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        getSupportActionBar().setTitle(R.string.strRegistrazione);
+
         realm.init(this);
 
         editUsername = findViewById(R.id.editUsername);

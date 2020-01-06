@@ -48,6 +48,9 @@ public class Visualizzazione extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizzazione);
 
+        getSupportActionBar().setTitle(R.string.strExerciseResearch);
+        getSupportActionBar().setSubtitle(R.string.eserciziTrovati);
+
         fh = new fileHandler(getApplicationContext());
 
         Realm.init(this);

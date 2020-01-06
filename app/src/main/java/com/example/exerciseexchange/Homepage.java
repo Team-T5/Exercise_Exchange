@@ -37,6 +37,8 @@ public class Homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
+        getSupportActionBar().setTitle(getString(R.string.strHome));
+
         btnRicercaEsercizi = findViewById(R.id.btnRicercaEsercizi);
         btnInserimentoEsercizi = findViewById(R.id.btnInserimentoEsercizi);
         btnStatisticheEsercizi = findViewById(R.id.btnStatisticheEsercizi);

@@ -18,13 +18,23 @@
     <string name="differentPasswordInputs">Le password inserite non coincidono</string>
     <string name="strHome">Home</string>
     <string name="strExerciseResearch">Ricerca esercizi</string>
+    <string name="modalitàRicerca">Modalità di ricerca</string>
+    <string name="eserciziTrovati">Esercizi trovati</string>
+    <string name="slideshow">Slideshow</string>
+    <string name="votaEsercizio">Vota l\'esercizio</string>
     <string name="strInsertExercise">Inserimento esercizi</string>
+    <string name="strVisualizzazioneFoto">Visualizzazione foto</string>
     <string name="strExerciseStats">Statistiche esercizi</string>
+    <string name="selezioneModalità">Selezionare la modalità</string>
     <string name="strSingleCategory">Singola \ncategoria</string>
+    <string name="strutturaEsame">Struttura d\'esame</string>
+    <string name="inserimentoMateria">Inserisci la materia</string>
+    <string name="inserimentoStruttura">Inserisci la struttura</string>
     <string name="strExamStructure">Struttura \nesame</string>
     <string name="strSubject">Materia</string>
     <string name="strCategory">Categoria</string>
     <string name="strSearch">Cerca</string>
+    <string name="strValutazione">Valutazione</string>
 
     <!-- Stringhe del cronometro -->
     <string name="avvia">Avvia</string>
@@ -54,6 +64,9 @@
     <string name="erroreCategoriaVuota">Indicare una categoria</string>
     <string name="erroreLibroVuoto">Indicare un libro</string>
     <string name="title_activity_giancarlo">GiancarloActivity</string>
+
+    <string name="baseURL">http://teamt5.altervista.org/Exercise_Exchange/</string>
+    <string name="hostDir">/Exercise_Exchange/</string>
 
     <string name="inserimentoEffettuato">Inserimento effettuato</string>
     <string name="inserimentoFallito">Errore di inserimento</string>

@@ -40,6 +40,9 @@ public class singolaCategoria extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singola_categoria);
 
+        getSupportActionBar().setTitle(R.string.strExerciseStats);
+        getSupportActionBar().setSubtitle(R.string.strSingleCategory);
+
         editMateria = findViewById(R.id.editMateria);
         editCategoria = findViewById(R.id.edit_Categoria);
         btnInvia = findViewById(R.id.btnRicerca);

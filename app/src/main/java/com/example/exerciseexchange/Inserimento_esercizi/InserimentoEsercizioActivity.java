@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +33,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -48,7 +52,7 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
     private Button btnConferma;
     private EditText edit_CodiceEsercizio, edit_Capitolo, edit_Categoria, edit_Libro, editMateria;
 
-    private List<String> Fotografie = null; //Le stringhe sono gli URL delle foto sul sito
+    private List<String> Fotografie; //Le stringhe sono gli URL delle foto sul sito
 
     private Realm realm;
 
@@ -70,6 +74,15 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getString(R.string.titoloInserimento));
         getSupportActionBar().setSubtitle(getString(R.string.informazioniEsercizio));
 
+        //Serve per utilizzare la connessione FTP
+        int SDK_INT = android.os.Build.VERSION.SDK_INT;
+        if (SDK_INT > 8)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
         subDirectory = null;
 
         Realm.init(this);
@@ -90,31 +103,14 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(verificaCampiInseriti()){
-                /*
-                Il caricamento delle foto sul server è opzionale, infatti se l'utente non scatta
-                delle fotografie la lista dei file sarà vuota e il metodo caricamentoFTP non verrà
-                chiamato. Il metodo che carica l'oggetto in realm, invece, viene sempre utilizzato.
-                 */
-                File folder = new File(subDirectory);
-                String URLimg;
-                File[] listaImmagini =  folder.listFiles();
-                if(listaImmagini != null) {
-                    for (int j = 0; j < listaImmagini.length; j++) {
-                    /*
-                    Il metodo length restituisce 0 sia se il file è vuoto sia se questo non esiste
-                     */
-                        if (listaImmagini[j].length() != 0) {
-                            URLimg = subDirectory + "_" + j;
-                            Fotografie.add(URLimg);
-                            //Caricamento vero e proprio
-                            caricamentoFTP(URLimg);
-                        }
-                    }
+//                /*
+//                Il caricamento delle foto sul server è opzionale, infatti se l'utente non scatta
+//                delle fotografie la lista dei file sarà vuota e il metodo caricamentoFTP non verrà
+//                chiamato. Il metodo che carica l'oggetto in realm, invece, viene sempre utilizzato.
+//                 */
+                    Upload();
                 }
-                    caricamentoOggettoRealm();
-
                 }
-            }
         });
 
         btnCamera.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +136,7 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
 //                                    "${applicationId}.provider",
 //                                    photoFile);
                             photoURI = FileProvider.getUriForFile(v.getContext(),
-                                     BuildConfig.APPLICATION_ID + ".fileprovider",
+                                    BuildConfig.APPLICATION_ID + ".fileprovider",
                                     photoFile);
                             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                             //startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
@@ -281,6 +277,11 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss-SSS").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES + "/" + subdirectory + "/");
+        if (!storageDir.exists()){
+            storageDir.mkdirs();
+            // If you require it to make the entire directory path including parents,
+            // use directory.mkdirs(); here instead.
+        }
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
@@ -292,33 +293,14 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
         return image;
     }
 
-    private void caricamentoOggettoRealm(){
+    private void Upload(){
         //Creo il nuovo esercizio
         Esercizio e = new Esercizio();
 
         //Prelevo lo username dell'utente
-        /*
-        Dato che il file Credentials.txt può contenere o solo lo username oppure username e password
-        devo distinguere i due casi verificando la presenza della @.
-        */
-        String credentials = fh.read(credentialsFile);
-        int atPosition = credentials.indexOf('@');
-        String username;
-        if(atPosition != -1){
-            //The file has username@password
-            username = credentials.substring(0, atPosition);
-        } else{
-            //The file only has the username
-            username = credentials;
-        }
-
+        String username = prelevaUsername();
         String tempoImpiegato = getIntent().getStringExtra("tempoImpiegato");
         int numeroTentativi = getIntent().getIntExtra("numeroTentativi", 1);
-
-        //Queste righe di codice lasciale stare per ora, poi le toglierò se necessario
-//                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-//                    sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
-//                    String dataSvolgimento = sdf.format(new Date());
 
         //L'ID del nuovo esercizio è dato dal ID massimo nella tabella + 1
         long ID = (long) realm.where(Esercizio.class).max("ID") + 1;
@@ -329,10 +311,26 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
         e.setNumTentativi(numeroTentativi);
         e.setTempoSvolgimento(tempoImpiegato);
         e.setDataSvolgimento(new Date());
-        if(Fotografie != null && !Fotografie.isEmpty()) {
-            RealmList<String> immagini = new RealmList<>();
-            immagini.addAll(Fotografie);
-            e.setFotografie(immagini);
+
+        /*
+        Devo accedere alla cartella contenente le foto e per ogni foto devo inserire il codice
+        univoco (nome) in realm e devo caricarla su Altervista
+         */
+        File currentImage;
+        FTPUploader uploader;
+        //Connessione FTP
+        try {
+            uploader = new FTPUploader(getString(R.string.hostname), getString(R.string.usernameFTP), getString(R.string.passwordFTP));
+
+            File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES + "/" + subDirectory + "/");
+            String[] list = storageDir.list();
+            for (int i = 0; i < list.length; i++){
+                currentImage = new File(storageDir + "/" + list[i]);
+                uploader.uploadFile(currentImage.getAbsolutePath(), currentImage.getName(), "");
+                e.addFotografia(getString(R.string.baseURL) +currentImage.getName());
+            }
+        } catch (Exception error){
+            Log.e("Errore di connessione", error.getMessage());
         }
         e.setCaricatoDa(username);
 
@@ -341,6 +339,12 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
             @Override
             public void execute(Realm realm) {
                 realm.copyToRealm(e);
+                /*
+                Ora devo aggiungere l'esercizio alle liste degli esercizi correlati alla categoria
+                e al libro inserito
+                 */
+                realm.where(Libro.class).equalTo("Nome", libro).findFirst().addEsercizio(e);
+                realm.where(Categoria.class).equalTo("Nome", categoria).findFirst().addEsercizio(e);
             }
         }, new Realm.Transaction.OnSuccess() {
             @Override
@@ -359,38 +363,22 @@ public class InserimentoEsercizioActivity extends AppCompatActivity {
         });
     }
 
-    private void caricamentoFTP(String URL){
+    private String prelevaUsername(){
         /*
-        Le foto vengono memorizzate su una cartella di Altervista a cui accedo utilizzando il
-        protocollo FTP.
-         */
-        FileInputStream fis = null;
-        try {
-            //Mi connetto al server
-            client.connect(getString(R.string.hostname));
-            client.login(getString(R.string.usernameFTP), getString(R.string.passwordFTP));
-
-            // Creo un InputStream del file da caricare
-            fis = new FileInputStream(URL);
-
-            // Memorizzo il file sul server
-            client.storeFile(URL, fis);
-
-            client.logout();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            //E' buona norma chiudere tutte le connessioni alla fine del trasferimento
-            try {
-                if (fis != null) {
-                    fis.close();
-                }
-                client.disconnect();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        Dato che il file Credentials.txt può contenere o solo lo username oppure username e password
+        devo distinguere i due casi verificando la presenza della @.
+        */
+        String credentials = fh.read(credentialsFile);
+        int atPosition = credentials.indexOf('@');
+        String username;
+        if(atPosition != -1){
+            //The file has username@password
+            username = credentials.substring(0, atPosition);
+        } else{
+            //The file only has the username
+            username = credentials;
         }
+        return username;
     }
-
 }
 

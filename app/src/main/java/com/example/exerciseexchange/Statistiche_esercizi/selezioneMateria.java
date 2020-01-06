@@ -11,10 +11,7 @@ import android.widget.Toast;
 
 import com.example.exerciseexchange.R;
 import com.example.exerciseexchange.Utilità.fileHandler;
-import com.example.exerciseexchange.model.Categoria;
 import com.example.exerciseexchange.model.Materia;
-
-import java.util.List;
 
 import io.realm.Realm;
 
@@ -36,6 +33,9 @@ public class selezioneMateria extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selezione_materia);
 
+        getSupportActionBar().setTitle(R.string.strutturaEsame);
+        getSupportActionBar().setSubtitle(R.string.inserimentoMateria);
+
         Realm.init(this);
         realm = Realm.getDefaultInstance();
 
@@ -53,7 +53,7 @@ public class selezioneMateria extends AppCompatActivity {
                     struttra d'esame
                      */
                     fh.write(criteriRicercaFile, materia);
-                    Intent intent = new Intent(selezioneMateria.this, StrutturaEsame2.class);
+                    Intent intent = new Intent(selezioneMateria.this, StrutturaEsame.class);
                     startActivity(intent);
                 }
             }

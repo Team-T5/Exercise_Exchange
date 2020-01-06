@@ -37,6 +37,9 @@ public class votaEsercizio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vota_esercizio);
 
+        getSupportActionBar().setTitle(R.string.strExerciseResearch);
+        getSupportActionBar().setSubtitle(R.string.votaEsercizio);
+
         barraValutazione = findViewById(R.id.barraValutazione);
 
         Realm.init(this);

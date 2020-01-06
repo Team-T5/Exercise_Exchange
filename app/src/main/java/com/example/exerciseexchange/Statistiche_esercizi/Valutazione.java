@@ -26,6 +26,9 @@ public class Valutazione extends AppCompatActivity {
         editableVerdetto = findViewById(R.id.editableVerdetto);
         editableDidascalia = findViewById(R.id.editableDidascalia);
 
+        getSupportActionBar().setTitle(R.string.strutturaEsame);
+        getSupportActionBar().setSubtitle(R.string.strValutazione);
+
         /*
         Prendo la durata dell'esame e il tempo di svolgimento stimato in secondi dall'intent poi ne
         calcolo il rapporto

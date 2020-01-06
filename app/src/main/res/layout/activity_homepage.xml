@@ -6,65 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".Homepage">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/strHome"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/toolbar3"
-        app:layout_constraintEnd_toStartOf="@+id/toolbar3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/toolbar3"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
-
     <TextView
         android:id="@+id/txtUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="Inserire username"
-        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnLogout"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft" />
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:clickable="false"
         android:text="@string/strLogout"
         android:textColor="#3F51B5"
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
 
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars[2]" />
 
     <Button
         android:id="@+id/btnRicercaEsercizi"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colore3"
         android:text="@string/strExerciseResearch"
         app:layout_constraintBottom_toTopOf="@+id/btnInserimentoEsercizi"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,6 +52,7 @@
         android:id="@+id/btnInserimentoEsercizi"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colore2"
         android:text="@string/strInsertExercise"
         app:layout_constraintBottom_toTopOf="@+id/btnStatisticheEsercizi"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,6 +64,7 @@
         android:id="@+id/btnStatisticheEsercizi"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colore1"
         android:text="@string/strExerciseStats"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,5 +85,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="10dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="10dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

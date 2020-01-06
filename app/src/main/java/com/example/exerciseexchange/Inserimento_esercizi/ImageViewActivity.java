@@ -18,6 +18,10 @@ public class ImageViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_view);
+
+        getSupportActionBar().setTitle(getString(R.string.strInsertExercise));
+        getSupportActionBar().setSubtitle(R.string.strVisualizzazioneFoto);
+
         this.FileName = getIntent().getStringExtra("path");
         Bitmap myBitmap = BitmapFactory.decodeFile(FileName);
         //Drawable d = new BitmapDrawable(getResources(), myBitmap);

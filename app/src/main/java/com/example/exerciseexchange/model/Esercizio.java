@@ -1,6 +1,8 @@
 package com.example.exerciseexchange.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class Esercizio extends RealmObject implements Serializable {
     private Date dataSvolgimento;
     private RealmList<Voto> Voti;
     private RealmList<String> Fotografie;
+//    = new RealmList<>("");
 
     //Campo che contiene lo username dell'utente che ha caricato l'esercizio
     private String caricatoDa;
@@ -106,6 +109,10 @@ public class Esercizio extends RealmObject implements Serializable {
     }
 
     public void addFotografia(String url){
-        Fotografie.add(url);
+        if(Fotografie == null){
+            Fotografie = new RealmList<>(url);
+        }else {
+            Fotografie.add(url);
+        }
     }
 }
