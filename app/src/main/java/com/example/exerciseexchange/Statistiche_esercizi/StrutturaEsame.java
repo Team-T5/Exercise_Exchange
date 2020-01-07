@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import io.realm.Realm;
+import io.realm.Sort;
 
 import static com.example.exerciseexchange.Utilità.MyApplication.criteriRicercaFile;
 
@@ -263,7 +264,7 @@ public class StrutturaEsame extends AppCompatActivity {
                     di caso peggiore ed inserirlo nella mappa.
                     */
                     Categoria objCategoria = realm.where(Categoria.class).equalTo("Nome", c).findFirst();
-                    List<Esercizio> objEsercizi = objCategoria.getEsercizi();
+                    List<Esercizio> objEsercizi = objCategoria.getEsercizi().where().sort("dataSvolgimento", Sort.DESCENDING).limit(5).findAll();
                     //Il valore iniziale del tempo di caso peggiore della categoria è quello del primo esercizio
                     int secondiCategoria = secondiEsercizio(objEsercizi.get(0).getTempoSvolgimento());
                     for(Esercizio e: objEsercizi){
