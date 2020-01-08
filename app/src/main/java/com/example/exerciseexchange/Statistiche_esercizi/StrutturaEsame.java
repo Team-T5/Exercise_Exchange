@@ -33,6 +33,7 @@ import java.util.stream.Stream;
 import io.realm.Realm;
 import io.realm.Sort;
 
+import static com.example.exerciseexchange.Utilità.MyApplication.credentialsFile;
 import static com.example.exerciseexchange.Utilità.MyApplication.criteriRicercaFile;
 
 public class StrutturaEsame extends AppCompatActivity {
@@ -308,5 +309,6 @@ public class StrutturaEsame extends AppCompatActivity {
 
         }
     }
+
 
 }
